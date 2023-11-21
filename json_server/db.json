@@ -1,0 +1,13 @@
+{
+  "courses": [
+    { "id": 1, 
+    "name": "Khóa học JavaScript cơ bản", 
+    "description": "Kiến thức cơ bản dành cho người mới" }
+  ],
+  "comments": [
+    { "id": 1, 
+    "body": "some comment",
+     "postId": 1 }
+  ],
+  "profile": { "name": "typicode" }
+}
