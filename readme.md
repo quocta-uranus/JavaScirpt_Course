@@ -1,14 +1,14 @@
-**_reduce_**: thực hiện một hàm reducer (hàm xử lý) lên mỗi phần tử của mảng, từ trái sang phải, để giảm nó xuống một giá trị duy nhất
+## **Callback functions**
 
-**_forEach_** javascript duyệt qua từng phần tử trong mảng và thực thi một hàm callback cho mỗi phần tử đó
+- reduce: thực hiện một hàm reducer (hàm xử lý) lên mỗi phần tử của mảng, từ trái sang phải, để giảm nó xuống một giá trị duy nhất
 
-**_find_**: trả về giá trị của phần tử đầu tiên trong mảng thỏa mãn điều kiện được xác định trong hàm callback
+- **forEach** javascript duyệt qua từng phần tử trong mảng và thực thi một hàm callback cho mỗi phần tử đó
+- **find**: trả về giá trị của phần tử đầu tiên trong mảng thỏa mãn điều kiện được xác định trong hàm callback
 
-**_filter_**: tạo một mảng mới chứa tất cả các phần tử thỏa mãn điều kiện được xác định trong hàm callback
+- **filter**: tạo một mảng mới chứa tất cả các phần tử thỏa mãn điều kiện được xác định trong hàm callback
 
-**_every_** :kiểm tra xem tất cả các phần tử trong mảng có thỏa mãn điều kiện được xác định trong hàm callback không, và trả về true nếu tất cả đều thỏa mãn, ngược lại trả về false
-
-**_some_**: kiểm tra xem có ít nhất một phần tử trong mảng thỏa mãn điều kiện được xác định trong hàm callback không, và trả về true nếu có, ngược lại trả về false
+- **every** :kiểm tra xem tất cả các phần tử trong mảng có thỏa mãn điều kiện được xác định trong hàm callback không, và trả về true nếu tất cả đều thỏa mãn, ngược lại trả về false
+- **some**: kiểm tra xem có ít nhất một phần tử trong mảng thỏa mãn điều kiện được xác định trong hàm callback không, và trả về true nếu có, ngược lại trả về false
 
 `initial value`:giá trị ban đầu
 
@@ -27,8 +27,10 @@
 
 - Resize: Xảy ra khi kích thước cửa sổ trình duyệt thay đổi.
 
-Sử dụng **_event listener_** khi muốn một sự kiện diễn ra nhưng sau đó lai muốn hủy bỏ lắng nghe sự kiện đó trong một trường hợp cụ thể nào đó
+Sử dụng **event istener** khi muốn một sự kiện diễn ra nhưng sau đó lai muốn hủy bỏ lắng nghe sự kiện đó trong một trường hợp cụ thể nào đó
 Khi có nhiều event listener ta có thể loại bỏ 1 sự kiện cụ thể nào đó
+
+## **JSON**
 
 **_JSON_** : JavaScript Object Notation
 **JSON** :
@@ -43,9 +45,9 @@ Khi có nhiều event listener ta có thể loại bỏ 1 sự kiện cụ thể
   **_Parse_**: Từ JSON -> Javascript types
   **_Promise_** xử lý những thao tác bất đồng bộ
 
-Postman
+## **FETCH**
 
-## **CRUD**
+**CRUD**
 
 - Create: Tạo mới -> POST
 - Read: Lấy dữ liệu -> GET
