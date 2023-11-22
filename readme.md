@@ -53,3 +53,18 @@ Khi có nhiều event listener ta có thể loại bỏ 1 sự kiện cụ thể
 - Read: Lấy dữ liệu -> GET
 - Update: Chỉnh sửa -> PUT/PATCH
 - Detele: Xóa -> DETELE
+
+## **ECMAScript 6+**
+
+- Var / Let, Const: Scope, Hosting
+- Const là hằng số giá trị k đổi / Var, Let: Assignment
+- Code thuần : var
+- Babel: Const, Let
+- Khi định nghĩa biến và không gán lại biến đó thì dùng _Const_
+- khi cần gán lại giá trị cho biến thì dùng _let_
+
+**Enhanced object literals**
+
+- Định nghĩa key: value cho object
+- Định nghĩa method cho object
+- Định nghĩa key cho object dưới dạng biến

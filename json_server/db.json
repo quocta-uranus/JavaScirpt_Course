@@ -1,13 +1,24 @@
 {
   "courses": [
-    { "id": 1, 
-    "name": "Khóa học JavaScript cơ bản", 
-    "description": "Kiến thức cơ bản dành cho người mới" }
-  ],
-  "comments": [
-    { "id": 1, 
-    "body": "some comment",
-     "postId": 1 }
-  ],
-  "profile": { "name": "typicode" }
+    {
+      "name": "Thiết kế web responsive",
+      "description": "Giúp bạn nắm chắc về web responsive",
+      "id": 3
+    },
+    {
+      "name": "Khóa học JavaScript cơ bản",
+      "description": "Giúp bạn học tốt hơn1",
+      "id": 4
+    },
+    {
+      "name": "HTML CSS Pro",
+      "description": "Giúp bạn học tốt hơn1",
+      "id": 6
+    },
+    {
+      "name": "Khóa học C++ cho người mới bắt đầu",
+      "description": "Giúp bạn học tốt hơn !",
+      "id": 7
+    }
+  ]
 }

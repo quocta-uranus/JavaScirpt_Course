@@ -25,11 +25,13 @@ function getTotal(arr) {
 }
 console.log(getTotal([1,2,3]));
 console.log(getTotal([4,5,-3]));
-console.log(getTotal([4,5,3,5]));
+console.log(getTotal([4,5,3,5]));           
+
 
 
 function hell(value, cb) {
     cb(value);
+
 }
 
 // Không sử dụng Promise dẫn đến tạo ra callback hell 
@@ -63,3 +65,11 @@ notHell(1)
     .then(function (value) {
         console.log(value + 1);
     });
+class Course {
+    constructor(name, price) {
+        this.name = name;
+        this.price = price;
+    } 
+}
+const Course = new Course('Javascript',200);
+console.log(`Name: ${Course.name}, Price: ${Course.price}`);
