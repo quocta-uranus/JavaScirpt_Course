@@ -61,7 +61,7 @@ function renderCourses (courses) {
         return `
             <li class="course-item-${course.id}">
             <h4> ${course.name}</h4>
-            <p> ${course.description}</p>   
+            <p> ${course.description}</p>
             <button onclick="handleDeleteCourse(${course.id})"> Xóa </button> 
             </li>
         `;
