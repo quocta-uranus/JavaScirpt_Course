@@ -72,4 +72,4 @@ class Course {
     } 
 }
 const Course = new Course('Javascript',200);
-console.log(`Name: ${Course.name}, Price: ${Course.price}`);
+console.log(`Course: ${Course.name}, Price: ${Course.price}`);
