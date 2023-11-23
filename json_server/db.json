@@ -13,12 +13,8 @@
     {
       "name": "HTML CSS Pro",
       "description": "Giúp bạn học tốt hơn1",
-      "id": 6
-    },
-    {
-      "name": "Khóa học C++ cho người mới bắt đầu",
-      "description": "Giúp bạn học tốt hơn !",
-      "id": 7
-    }
+      "id": 6         
+
+    }        
   ]
-}
+}  
