@@ -23,7 +23,7 @@ const app = {
     isRandom: false,
     isRepeat: false,
      isBg : false,
-    songs: [
+     songs: [
         {
             name: "Bạn Đời",
             singer: "Karik,GDucky",

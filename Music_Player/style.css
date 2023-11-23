@@ -40,14 +40,14 @@ html {
 }
 
 .dashboard {
-padding: 16px 16px 4px;
-
+    padding: 16px 16px 4px;
     background: transparent;
     position: fixed;
     top: 0;
     width: 100%;
     max-width: 480px;
     border-bottom: 1px solid #ebebeb;
+
     border: 2px solid rgba(255, 255, 255, .5);
     border-radius: 20px;
     backdrop-filter: blur(20px);
@@ -100,6 +100,9 @@ display: block;
         .bg .icon {
             color: #000;
         }
+
+
+
 
 /* HEADER */
 header {
@@ -185,7 +188,11 @@ header h2 {
 
 /* PLAYLIST */
 .playlist {
+
     margin-top: 445px;
+
+    margin-top: 408px;
+
     padding: 12px;
 }
 
@@ -197,8 +204,10 @@ header h2 {
     padding: 8px 16px;
     border-radius: 5px;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+
     margin-left: -12px;
     margin-right: -12px;
+
 }
 
 .song.active {
@@ -206,7 +215,11 @@ header h2 {
 }
 
 .song:active {
+
     opacity: 0.6;
+
+    opacity: 0.8;
+
 }
 
 .song.active .option,
