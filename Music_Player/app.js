@@ -11,11 +11,18 @@ const $$ = document.querySelectorAll.bind(document)
         const nextBtn = $('.btn-next')
         const prevBtn = $('.btn-prev')
         const randomBtn = $('.btn-random')   
+        const repeatBtn = $('.btn-repeat')
+        const playlist = $('.playlist')
+        const bg = $('.btn-mode')
+        const body = $("body")
 
 const app = {
+    
     currentIndex : 0,
     isPlaying: false,
     isRandom: false,
+    isRepeat: false,
+     isBg : false,
     songs: [
         {
             name: "Bạn Đời",
@@ -85,9 +92,9 @@ const app = {
         },
     ],
     render : function () {
-        const htmls = this.songs.map(song => {
+        const htmls = this.songs.map((song , index) => {
             return `
-             <div class="song">
+             <div class="song ${index === this.currentIndex ? 'active' : '' }"data-index = "${index}">
                 <div class="thumb"
                     style="background-image: url('${song.image}')">
                 </div>
@@ -101,7 +108,7 @@ const app = {
             </div>`
         })
 
-        $('.playlist').innerHTML = htmls.join('')
+       playlist.innerHTML = htmls.join('')
     },
     defineProperties: function(){
         Object.defineProperty(this,'currentSong', {
@@ -114,6 +121,19 @@ const app = {
         const _this = this
         const cdWidth = cd.offsetWidth
 
+          bg.onclick = function(){
+                _this.isBg = !_this.isBg
+                if(_this.isBg){
+                    player.classList.add('bg')
+                    body.classList.add('bg')
+                    
+                } else {
+                    player.classList.remove('bg')
+                    body.classList.remove('bg')
+                }
+            
+             
+            }
         // xử lý CD quay và dừng
        const cdThumbAnimate = cdThumb.animate([
             { transform : 'rotate(360deg)'}
@@ -174,18 +194,64 @@ const app = {
         nextBtn.onclick = function() {
             _this.nextSong()
             audio.play()
+            _this.render()
+            _this.scrollToActiveSong()
         }
         //khi prev song 
         prevBtn.onclick = function() {
             _this.prevSong()
             audio.play()
+            _this.render()
         }
+        // xử lý khi random song
         randomBtn.onclick = function() {
-            _this.isRandom =!_this.isRandom
-            randomBtn.classList.toggle('active', _this.isRandom)
+            
+            _this.playRandomSong()
+            audio.play()
+            _this.render()
+            _this.scrollToActiveSong()
         }
-       
+        //xử lý phát lại song
+        repeatBtn.onclick = function() {
+            _this.isRepeat = !_this.isRepeat
+            repeatBtn.classList.toggle('active',_this.isRepeat)
+        }
 
+       //xử lý next song khi audio ended
+       audio.onended = function() {
+        if(_this.isRepeat){
+            audio.play()
+        }else {
+            _this.nextSong()
+            audio.play()
+        }
+       }
+       // Lắng nghe click hành vi vào playlist
+       playlist.onclick = function (e) {
+            // xử lý khi click vào song
+            if(e.target.closest('.song:not(.active)') || e.target.closest('.optionn')) {
+                const index = e.target.closest('.song').getAttribute('data-index')
+                _this.currentIndex = Number(index)
+                _this.loadCurrentSong()
+                audio.play()
+                _this.render()
+                _this.scrollToActiveSong()
+            }
+            
+
+       }
+
+
+
+    },
+    scrollToActiveSong : function () {
+        setTimeout(()=> {
+            $('.song.active').scrollIntoView({
+                behavior:'smooth',
+                block: 'center',
+                inline: 'center'
+            })
+        },300)
     },
     loadCurrentSong : function(){
        
@@ -208,8 +274,25 @@ const app = {
         this.loadCurrentSong()
    
     },
-    playRandomSong : function () {
+      playedSongs : [],
+playRandomSong : function () {
+    let newIndex
+    if (this.playedSongs.length === this.songs.length) {
+        this.playedSongs = [];
+    }
+         do{
+        newIndex = Math.floor(Math.random() * this.songs.length)
+    } while( newIndex ===this.currentIndex );
+       
+     this.playedSongs.push(newIndex)
+    this.currentIndex = newIndex
+    this.loadCurrentSong()
+    console.log(newIndex)
+    
          
+         
+    
+
     },
     start : function ( ) {
         //định nghỉa các thuộc tính cho object
