@@ -27,68 +27,68 @@ const app = {
         {
             name: "Bạn Đời",
             singer: "Karik,GDucky",
-            path :'/Music_Player/music/song1.mp3',
-            image:'/Music_Player/img/song1.png'
+            path :'/music/song1.mp3',
+            image:'/img/song1.png'
         },
          {
             name: "NoLoveNoLife",
             singer: "HIEUTHUHAI",
-            path :'/Music_Player/music/song2.mp3',
-            image:'/Music_Player/img/song2.png'
+            path :'/music/song2.mp3',
+            image:'/img/song2.png'
         },
           {
             name: "Don't côi",
             singer: "Ronzboong",
-            path :'/Music_Player/music/song3.mp3',
-            image:'/Music_Player/img/song3.png'
+            path :'/music/song3.mp3',
+            image:'/img/song3.png'
         },
           {
             name: "Anh đã ổn hơn",
             singer: "MCK",
-            path :'/Music_Player/music/song4.mp3',
-            image:'/Music_Player/img/song4.png'
+            path :'/music/song4.mp3',
+            image:'/img/song4.png'
         },
           {
             name: "Không thể say",
             singer: "HIEUTHUHAI",
-            path :'/Music_Player/music/song5.mp3',
-            image:'/Music_Player/img/song5.png'
+            path :'/music/song5.mp3',
+            image:'/img/song5.png'
         },
          {
             name: "À Lôi",
             singer: "Double2T",
-            path :'/Music_Player/music/song6.mp3',
-            image:'/Music_Player/img/song6.png'
+            path :'/music/song6.mp3',
+            image:'/img/song6.png'
         },
          {
             name: "Rồi tới luôn",
             singer: "Nal",
-            path :'/Music_Player/music/song7.mp3',
-            image:'/Music_Player/img/song7.png'
+            path :'/music/song7.mp3',
+            image:'/img/song7.png'
         },
          {
             name: "Chưa quên người yêu cũ",
             singer: "Hà Nhi",
-            path :'/Music_Player/music/song8.mp3',
-            image:'/Music_Player/img/song8.png'
+            path :'/music/song8.mp3',
+            image:'/img/song8.png'
         },
          {
             name: "Chỉ là không cùng nhau",
             singer: "Tăng Phúc, Thảo Nhi",
-            path :'/Music_Player/music/song9.mp3',
-            image:'/Music_Player/img/song9.png'
+            path :'/music/song9.mp3',
+            image:'/img/song9.png'
         },
          {
             name: "Người con gái ta thương",
             singer: "Thỏ xỏ khuyên",
-            path :'/Music_Player/music/song10.mp3',
-            image:'/Music_Player/img/song10.png'
+            path :'/music/song10.mp3',
+            image:'/img/song10.png'
         },
          {
             name: "Thằng điên",
             singer: "Justatee x Phương Ly",
-            path :'/Music_Player/music/song11.mp3',
-            image:'/Music_Player/img/song11.png'
+            path :'/music/song11.mp3',
+            image:'/img/song11.png'
         },
     ],
     render : function () {
@@ -274,24 +274,23 @@ const app = {
         this.loadCurrentSong()
    
     },
-      playedSongs : [],
-playRandomSong : function () {
-    let newIndex
-    if (this.playedSongs.length === this.songs.length) {
-        this.playedSongs = [];
+playedSongsSet: [],
+playRandomSong: function() {
+    if (this.playedSongsSet.length == 0) {
+        this.playedSongsSet = [...this.songs];
     }
-         do{
-        newIndex = Math.floor(Math.random() * this.songs.length)
-    } while( newIndex ===this.currentIndex );
+
+   
+    let newIndex;
+   
+        newIndex = Math.floor(Math.random() * this.playedSongsSet.length);
+   
+       this.playedSongsSet.splice(newIndex, 1)
+    
        
-     this.playedSongs.push(newIndex)
-    this.currentIndex = newIndex
-    this.loadCurrentSong()
-    console.log(newIndex)
-    
-         
-         
-    
+    this.currentIndex = newIndex;
+    console.log(...this.songs);
+    this.loadCurrentSong();
 
     },
     start : function ( ) {
