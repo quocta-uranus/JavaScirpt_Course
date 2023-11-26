@@ -15,6 +15,12 @@ const $$ = document.querySelectorAll.bind(document)
         const playlist = $('.playlist')
         const bg = $('.btn-mode')
         const body = $("body")
+        const namee = $('.namee')
+        const song = $('.song')
+        const title = $('.title')
+        const author = $('.author')
+        const volume = $("#volume-ms")
+        
 
 const app = {
     
@@ -124,12 +130,19 @@ const app = {
           bg.onclick = function(){
                 _this.isBg = !_this.isBg
                 if(_this.isBg){
-                    player.classList.add('bg')
                     body.classList.add('bg')
+                    namee.classList.add('bg')
+                    song.classList.add('bg')
+                    title.classList.add('bg')
+                    author.classList.add('bg')
+                   
                     
                 } else {
-                    player.classList.remove('bg')
                     body.classList.remove('bg')
+                    namee.classList.remove('bg')
+                    song.classList.remove('bg')
+                    title.classList.remove('bg')
+                    author.classList.remove('bg')
                 }
             
              
@@ -209,7 +222,7 @@ const app = {
             _this.playRandomSong()
             audio.play()
             _this.render()
-            _this.scrollToActiveSong()
+            
         }
         //xử lý phát lại song
         repeatBtn.onclick = function() {
@@ -240,6 +253,13 @@ const app = {
             
 
        }
+           // thay đổi volume
+            volume.oninput = function(){
+                audio.volume = volume.value
+            }
+            volume.value = audio.volume
+
+
 
 
 
@@ -282,12 +302,10 @@ playRandomSong: function() {
 
    
     let newIndex;
-   
         newIndex = Math.floor(Math.random() * this.playedSongsSet.length);
    
        this.playedSongsSet.splice(newIndex, 1)
-    
-       
+      
     this.currentIndex = newIndex;
     console.log(...this.songs);
     this.loadCurrentSong();

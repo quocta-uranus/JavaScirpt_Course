@@ -58,10 +58,11 @@ html {
 .list {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     
 }
  .btn-mode {
-display: block;
+    display: block;
     font-size: 20px;
     padding: 10px;
 }
@@ -70,13 +71,23 @@ display: block;
             background-size: 100% 100%;
             background-position: center;
         }
+        
     
-        .bg .name {
-            color: #000;
+        .bg .namee {
+            color: #fff;
+            background : transparent;
+            
+            
+        }
+        .bg .song {
+            background-color: #d1d0d0;
         }
     
-        .bg .title-now {
-            color: #000;
+        .bg .song .title {
+            color: #666;
+        }
+        .bg .song .author {
+            color :#333;
         }
     
         .bg .name-tg {
@@ -97,27 +108,40 @@ display: block;
             position: relative;
         }
     
-        .bg .icon {
-            color: #000;
-        }
+      
+ #volume-ms {
+     transform: rotate(90deg);
+     top: 85px;
+     right: -54px;
+     position: absolute;
+     padding: 10px 0;
+     display: none;
 
+ }
 
+ .btn-volume:hover {
+     color: #ffffff;
+ }
+
+ .btn-volume:hover  #volume-ms {
+     display: block;
+ }
 
 
 /* HEADER */
-header {
+
+ .titlee {
+    color: var(--primary-color);
+    font-size: 12px;
     text-align: center;
     margin-bottom: 10px;
 }
 
-header h4 {
-    color: var(--primary-color);
-    font-size: 12px;
-}
-
-header h2 {
+ .namee {
     color: var(--text-color);
     font-size: 20px;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 /* CD */
@@ -189,9 +213,7 @@ header h2 {
 /* PLAYLIST */
 .playlist {
 
-    margin-top: 445px;
-
-   
+    margin-top: 450px;
 
     padding: 12px;
 }
