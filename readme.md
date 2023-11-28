@@ -68,3 +68,28 @@ Khi có nhiều event listener ta có thể loại bỏ 1 sự kiện cụ thể
 - Định nghĩa key: value cho object
 - Định nghĩa method cho object
 - Định nghĩa key cho object dưới dạng biến
+
+IIFE - Immediately Invoked Function Expression
+Hàm gọi theo IIFE function
+;(function () {
+let name ='AQ';
+console.log(name);
+
+})()
+Hàm gọi bình thường
+const callNow = function () {
+let name ='AQ';
+console.log(name);
+
+}
+callNow();
+
+Scope - Phạm vi
+
+- Các loại phạm vị :
+  Global : Toàn cầu
+  Code block - Khối mã : lest, const
+  Local scope- Hàm : var, function
+  Khi gọi mỗi hàm luôn có 1 pham vi mới được tạo
+  Các hàm có thể truy câp các biến được khai báo trong phạm vi của nó và bên ngoài nó
+  Cách thức một biến được truy cập
