@@ -4,17 +4,6 @@
       "name": "Thiết kế web responsive",
       "description": "Giúp bạn nắm chắc về web responsive",
       "id": 3
-    },
-    {
-      "name": "Khóa học JavaScript cơ bản",
-      "description": "Giúp bạn học tốt hơn1",
-      "id": 4
-    },
-    {
-      "name": "HTML CSS Pro",
-      "description": "Giúp bạn học tốt hơn1",
-      "id": 6         
-
-    }        
+    }
   ]
-}  
+}
