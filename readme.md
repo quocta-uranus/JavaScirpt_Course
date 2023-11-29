@@ -84,7 +84,9 @@ console.log(name);
 }
 callNow();
 
-Scope - Phạm vi
+## **Scope**
+
+- Phạm vi
 
 - Các loại phạm vị :
   Global : Toàn cầu
@@ -93,3 +95,42 @@ Scope - Phạm vi
   Khi gọi mỗi hàm luôn có 1 pham vi mới được tạo
   Các hàm có thể truy câp các biến được khai báo trong phạm vi của nó và bên ngoài nó
   Cách thức một biến được truy cập
+
+  Hoisting
+  là một đặc tính của JavaScript mà cho phép các khai báo biến và khai báo hàm được "nâng lên" (hoisted) lên đầu phạm vi của chúng trước khi mã JavaScript thực sự được thực thi
+
+## **STRICT MODE**
+
+"use strict"
+var hero = "Iron man"
+function MultiverseOfMadness() {
+var universe = 100
+}
+MultiverseOfMadness()
+console.log(hero)
+console.log(universe)
+output: Ironman/Uncaught ReferenceError:universe is not defined
+Với use strict mode, biến universe chỉ được khai báo trong phạm vi của một function. Khi đó, nếu gọi đến biến đó ở ngoài phạm vi khai báo sẽ dẫn đến lỗi.
+
+## **Value types & Reference types**
+
+### 1.Value types (Primitive data types)
+
+- String
+- Number
+- Boolean
+- BigInt
+- Symbol
+- undefined
+- null
+
+### 2.Reference types(Non-primitive data types)
+
+- Object
+- Array
+- Function
+
+## Data types with functions
+
+- Value types
+- Reference types
