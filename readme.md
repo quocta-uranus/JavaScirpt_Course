@@ -134,3 +134,9 @@ Với use strict mode, biến universe chỉ được khai báo trong phạm vi 
 
 - Value types
 - Reference types
+
+4 mắm tỏi
+1 luộc
+1 xối mở
+
+2 phần xối mỡ vừa
