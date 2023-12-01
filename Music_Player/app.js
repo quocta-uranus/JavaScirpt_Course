@@ -33,69 +33,76 @@ const app = {
         {
             name: "Bạn Đời",
             singer: "Karik,GDucky",
-            path :'/music/song1.mp3',
-            image:'/img/song1.png'
+            path :'/Music_Player/music/song1.mp3',
+            image:'/Music_Player/img/song1.png'
         },
          {
             name: "NoLoveNoLife",
             singer: "HIEUTHUHAI",
-            path :'/music/song2.mp3',
-            image:'/img/song2.png'
+            path :'/Music_Player/music/song2.mp3',
+            image:'/Music_Player/img/song2.png'
         },
           {
             name: "Don't côi",
             singer: "Ronzboong",
-            path :'/music/song3.mp3',
-            image:'/img/song3.png'
+            path :'/Music_Player/music/song3.mp3',
+            image:'/Music_Player/img/song3.png'
         },
           {
             name: "Anh đã ổn hơn",
             singer: "MCK",
-            path :'/music/song4.mp3',
-            image:'/img/song4.png'
+            path :'/Music_Player/music/song4.mp3',
+            image:'/Music_Player/img/song4.png'
         },
           {
             name: "Không thể say",
             singer: "HIEUTHUHAI",
-            path :'/music/song5.mp3',
-            image:'/img/song5.png'
+            path :'/Music_Player/music/song5.mp3',
+            image:'/Music_Player/img/song5.png'
         },
          {
             name: "À Lôi",
             singer: "Double2T",
-            path :'/music/song6.mp3',
-            image:'/img/song6.png'
+            path :'/Music_Player/music/song6.mp3',
+            image:'/Music_Player/img/song6.png'
         },
          {
             name: "Rồi tới luôn",
             singer: "Nal",
-            path :'/music/song7.mp3',
-            image:'/img/song7.png'
+            path :'/Music_Player/music/song7.mp3',
+            image:'/Music_Player/img/song7.png'
         },
          {
             name: "Chưa quên người yêu cũ",
             singer: "Hà Nhi",
-            path :'/music/song8.mp3',
-            image:'/img/song8.png'
+            path :'/Music_Player/music/song8.mp3',
+            image:'/Music_Player/img/song8.png'
         },
          {
             name: "Chỉ là không cùng nhau",
             singer: "Tăng Phúc, Thảo Nhi",
-            path :'/music/song9.mp3',
-            image:'/img/song9.png'
+            path :'/Music_Player/music/song9.mp3',
+            image:'/Music_Player/img/song9.png'
         },
          {
             name: "Người con gái ta thương",
             singer: "Thỏ xỏ khuyên",
-            path :'/music/song10.mp3',
-            image:'/img/song10.png'
+            path :'/Music_Player/music/song10.mp3',
+            image:'/Music_Player/img/song10.png'
         },
          {
             name: "Thằng điên",
             singer: "Justatee x Phương Ly",
-            path :'/music/song11.mp3',
-            image:'/img/song11.png'
+            path :'/Music_Player/music/song11.mp3',
+            image:'/Music_Player/img/song11.png'
         },
+         {
+            name: "No Boundary",
+            singer: "Richie D. ICY ",
+            path :' /Music_Player/music/song12.mp3',
+            image:'/Music_Player/img/ha.png'
+        },
+
     ],
     render : function () {
         const htmls = this.songs.map((song , index) => {
