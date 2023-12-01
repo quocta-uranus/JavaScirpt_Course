@@ -1,91 +1,68 @@
+var myList = []; 
 
-var randomApi = 'http://localhost:3000/random';
-
-function start() {
-    getRandoms(renderRandoms);
-
-    handleCreateForm();
-}
-
-start();
-
-//Functions 
-
-function getRandoms(callback) {
-    fetch(randomApi)
-       .then(function(response) {
-        return response.json();
-    })
-    .then(callback);
-}
-
-function createRandom(data) {
-    var options = {
-        method : 'POST',
-        headers: {
-        "Content-Type": "application/json",
-        },
-        body : JSON.stringify(data)
-    };
-    fetch(randomApi,options)
-        .then(function(response){
-            response.json();
-        })
-        .then(callback);
-}
-function handleDeleteRandom(id) {
-      var options = {
-        method : 'DELETE',
-        headers: {
-        "Content-Type": "application/json",
-        },
-        
-    };
-    fetch(randomApi + '/' + id,options)
-        .then(function(response){
-            response.json();
-        })
-        .then(function(){
-          var randomItem =  document.querySelector('.random-item-' + id);
-          if (randomItem) {
-            randomItem.remove();
-          }
-        });
-}
-
-function renderRandoms (randoms) {
-    var listRandomsBlock = document. querySelector('#list-randoms');
-    var htmls = randoms.map(function(random){
-        return `
-            <li class="random-item-${random.id}">
-            <h4> ${random.name}</h4>
-            <button onclick="handleDeleteRandom(${random.id})"> Xóa </button> 
-            </li>
-        `;
-    });
-
-    listRandomsBlock.innerHTML = htmls.join('');
-
-}
 function handleCreateForm() {
     var createBtn = document.querySelector('#create');
     var nameInput = document.querySelector('input[name="name"]');
+    var listRandomsBlock = document.querySelector('#list-randoms');
 
-    function createRandomWithName() {
+    createBtn.onclick = function() {
         var name = nameInput.value;
-        var formData = {
-            name: name,
-        };
-        createRandom(formData, function () {
-            getRandoms(renderRandoms);
-        });
-    }
-
-    createBtn.onclick = createRandomWithName;
-
-    nameInput.addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-            createRandomWithName();
+        if (name.trim() !== '') {
+            myList.push(name);
+            renderRandoms(); 
+            nameInput.value = ''; 
         }
+    };
+}
+
+function handleDeleteRandom(index) {
+    myList.splice(index, 1); 
+    renderRandoms(); 
+}
+
+function renderRandoms() {
+    var listRandomsBlock = document.querySelector('#list-randoms');
+    listRandomsBlock.innerHTML = ''; 
+
+    myList.forEach(function(name, index) {
+        var listItem = document.createElement('li');
+        listItem.textContent = name;
+
+        var deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Xóa';
+        deleteButton.onclick = function() {
+            handleDeleteRandom(index); 
+        };
+
+        listItem.appendChild(deleteButton);
+        listRandomsBlock.appendChild(listItem);
     });
 }
+
+function start() {
+    handleCreateForm();
+    renderRandoms();
+}
+
+start();
+// function s
+
+function getRandomItem() {
+    
+    var randomIndex = Math.floor(Math.random() * myList.length);
+    console.log(randomIndex);
+    // myList.splice(randomIndex, 1);
+    return myList[randomIndex];
+   
+}
+    document.getElementById("randomButton").addEventListener("click", function() {
+    var resultElement = document.getElementById("result");
+    var randomItem = getRandomItem();
+    resultElement.textContent = "Kết quả: " + randomItem;
+    var index = myList.findIndex(item => item === randomItem);
+    console.log('index ---->', index);
+    myList.splice(index, 1);
+    console.log('myList ---->', myList);
+    renderRandoms(myList);
+   
+});
