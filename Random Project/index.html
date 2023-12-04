@@ -9,22 +9,30 @@
 </head>
 
 <body>
-    <div>
-        <h2>Danh sách người tham gia</h2>
-        <ul id="list-randoms"> </ul>
-    </div>
-    <div>
-        <div>
-            <label>Name</label>
-            <input class="input" type="text" name="name">
+    <div class="container">
+
+            <h2>Danh sách người tham gia</h2>
+
+        <div class="wheel">
+            <ul id="list-randoms"> </ul>
+            <button id = "randomButton" class="spin-button">Spin</button>
+            <p id="result"></p>
         </div>
-      
+           
+        
         <div>
-            <button id="create">Create</button>
+            <div>
+                <label>Name</label>
+                <input class="input" type="text" name="name">
+            </div>
+          
+            <div>
+                <button id="create">Create</button>
+            </div>
         </div>
+        <button id="randomButton">Random</button>
+        <p id="result"></p>
     </div>
-    <button id="randomButton">Random</button>
-    <p id="result"></p>
     <script src="app.js"></script>
 </body>
 
