@@ -1,22 +1,74 @@
-
 var createButton = document.getElementById('create');
+var input = document.querySelector('.input');
 
-createButton.addEventListener('click', function() {
+createButton.addEventListener('click', addName);
+input.addEventListener('keypress', handleKeyPress);
 
-    var newName = document.querySelector('.input').value.trim();
+function addName() {
+    var allNames = input.value.split('\n'); 
+    var newName = allNames[allNames.length - 1].trim();
    
     if (newName !== '') {
-       
         data.push({
             "name": newName,
             "value": data.length + 1 
-         
         });
 
         redrawChart();
-       
+
+        var nameContainer = document.createElement('div');
+        nameContainer.classList.add('name-container'); 
+
+        var nameText = document.createElement('span');
+        nameText.textContent = newName;
+
+        var deleteButton = document.createElement('button');
+        deleteButton.innerHTML = 'Xóa';
+        deleteButton.classList.add('delete-button');
+
+        deleteButton.addEventListener('click', function() {
+            var nameToDelete = nameText.textContent.trim();
+            var index = data.findIndex(function(item) {
+                return item.name === nameToDelete;
+            });
+            if (index !== -1) {
+                data.splice(index, 1); 
+                redrawChart(); 
+            }
+
+            nameContainer.remove()
+        });
+
+        nameContainer.appendChild(nameText);
+        nameContainer.appendChild(deleteButton);
+        input.parentElement.insertBefore(nameContainer, input);
+        input.value += '\n';
     }
-});
+}
+
+function handleKeyPress(event) {
+    if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        addName();
+        input.value += '\n'; 
+    }
+}
+function getRandomNumbers(){
+            var array = new Uint16Array(1000);
+            if(window.hasOwnProperty("crypto") && typeof window.crypto.getRandomValues === "function"){
+                window.crypto.getRandomValues(array);
+                console.log("works");
+            } else {
+                //no support for crypto, get crappy random numbers
+                for(var i=0; i < 1000; i++){
+                    array[i] = Math.floor(Math.random() * 100000) + 1;
+                }
+            }
+            return array;
+        
+        }
+
+
 
 
 function redrawChart() {
@@ -62,11 +114,7 @@ function redrawChart() {
             container.on("click", null);
             //all slices have been seen, all done
             console.log("OldPick: " + oldpick.length, "Data length: " + data.length);
-            if(oldpick.length == data.length){
-                console.log("done");
-                container.on("click", null);
-                return;
-            }
+           
             var  ps       = 360/data.length,
                  pieslice = Math.round(1440/data.length),
                  rng      = Math.floor((Math.random() * 1440) + 360);
@@ -75,32 +123,38 @@ function redrawChart() {
             
             picked = Math.round(data.length - (rotation % 360)/ps);
             picked = picked >= data.length ? (picked % data.length) : picked;
-            if(oldpick.indexOf(picked) !== -1){
-                d3.select(this).call(spin);
-                return;
-            } else {
+            if(oldpick.indexOf(picked) == -1){
                 oldpick.push(picked);
-            }
+            } 
             rotation += 90 - Math.round(ps/2);
-            vis.transition()
-                .duration(3000)
-                .attrTween("transform", rotTween)
-                .each("end", function(){
-                    //mark question as seen
-                    d3.select(".slice:nth-child(" + (picked + 1) + ") path")
-                        .attr("fill", "#111");
-                    //populate question
-                    d3.select("#question h1")
-                        .text(data[picked].question);
-                    oldrotation = rotation;
-              
-                    /* Get the result value from object "data" */
-                    console.log(data[picked].value)
-              
-                    /* Comment the below line for restrict spin to sngle time */
-                    container.on("click", spin);
-                });
+           vis.transition()
+        .duration(3000)
+        .attrTween("transform", rotTween)
+        .each("end", function(){
+        // Xóa màu của tên được chọn
+        var selectedName = data[picked].name;
+        var indexToRemove = data.findIndex(function(item) {
+            return item.name === selectedName;
+        });
+        if (indexToRemove !== -1) {
+            data.splice(indexToRemove, 1);
+            redrawChart(); 
+        }
+        oldrotation = rotation;
+        
+
+    });
+      var resultElement = document.getElementById('result');
+    var resultText = data[picked].name; // Thay "result" bằng tên key chứa kết quả trong đối tượng data
+    resultElement.textContent = resultText;
+
+ 
+   
+          
+    
+                 
         } 
+        
            svg.append("g")
             .attr("transform", "translate(" + (w + padding.left + padding.right) + "," + ((h/2)+padding.top) + ")")
             .append("path")
@@ -119,6 +173,7 @@ function redrawChart() {
             .attr("text-anchor", "middle")
             .text("SPIN")
             .style({"font-weight":"bold", "font-size":"30px"});
+        
             
 }
 
@@ -215,26 +270,10 @@ var padding = {top:20, right:40, bottom:0, left:0},
                     /* Comment the below line for restrict spin to sngle time */
                     container.on("click", spin);
                 });
+            
+
         }
         //make arrow
-        svg.append("g")
-            .attr("transform", "translate(" + (w + padding.left + padding.right) + "," + ((h/2)+padding.top) + ")")
-            .append("path")
-            .attr("d", "M-" + (r*.15) + ",0L0," + (r*.05) + "L0,-" + (r*.05) + "Z")
-            .style({"fill":"black"});
-        //draw spin circle
-        container.append("circle")
-            .attr("cx", 0)
-            .attr("cy", 0)
-            .attr("r", 60)
-            .style({"fill":"white","cursor":"pointer"});
-        //spin text
-        container.append("text")
-            .attr("x", 0)
-            .attr("y", 15)
-            .attr("text-anchor", "middle")
-            .text("SPIN")
-            .style({"font-weight":"bold", "font-size":"30px"});
         
         
         function rotTween(to) {
@@ -245,19 +284,6 @@ var padding = {top:20, right:40, bottom:0, left:0},
         }
         
         
-        function getRandomNumbers(){
-            var array = new Uint16Array(1000);
-            var scale = d3.scale.linear().range([360, 1440]).domain([0, 100000]);
-            if(window.hasOwnProperty("crypto") && typeof window.crypto.getRandomValues === "function"){
-                window.crypto.getRandomValues(array);
-                console.log("works");
-            } else {
-                //no support for crypto, get crappy random numbers
-                for(var i=0; i < 1000; i++){
-                    array[i] = Math.floor(Math.random() * 100000) + 1;
-                }
-            }
-            return array;
-        }
+      
 
 
