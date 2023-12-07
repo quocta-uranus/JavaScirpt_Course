@@ -7,13 +7,12 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <img class="logo" src="./image.png" alt="">
+    
 </head>
 <body>
     <div id="info">
         <div>
-            <div id="result-container">Result :
-                <div id="result"></div>
-            </div>
+         
             
             <div>
                 <label>Name</label>
@@ -31,6 +30,45 @@
             </div>
             <snowman>
                 <div class="body">
+                    <div class="container">
+                        <div class="star"></div>
+                        <div class="pressie">
+                            <div class="cover"></div>
+                            <div class="wrap"> </div>
+                            <div class="ribbon"></div>
+                        </div>
+                        <div class="tree">
+                            <div class="base"> </div>
+                            <div class="layer">
+                                <div class="line"> </div>
+                                <div class="bauble one"></div>
+                            </div>
+                    
+                            <div class="layer two">
+                                <div class="line two"> </div>
+                                <div class="bauble two"></div>
+                                <div class="socks">
+                                    <div class="top"> </div>
+                                    <div class="foot"></div>
+                                </div>
+                            </div>
+                    
+                            <div class="layer three">
+                                <div class="line three"> </div>
+                                <div class="bauble three"></div>
+                                <div class="socks two">
+                                    <div class="top"> </div>
+                                    <div class="foot two"></div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="layer four">
+                            <div class="bauble four"></div>
+                            <div class="star two"></div>
+                            <div class="line four"> </div>
+                        </div>
+                    </div>
                     <div class="head"></div>
                     <div class="hat"></div>
                     <div class="scarf"></div>
@@ -40,9 +78,74 @@
                         <div class="left-hand"></div>
                     </div>
                     <div class="shadow"></div>
+                    
+                                    </div>
+                            </snowman>
+                        <div class="tags">
+            
+                <div class="tag-container">
+                    <div class="tag">
+            
+                        <div class="tag-side tag-1-side">
+                            <div class="tag-1-top"></div>
+                            <div class="tag-text tag-1-text">
+                                Merry<br />Christmas
+                                <div class="rule-shape rule-red">&starf;</div>
+                            </div>
+                        </div>
+            
+                        <div class="tag-side tag-1-side is-back">
+                            <div class="tag-1-top"></div>
+                            <div class="tag-text tag-1-text">
+                                And a happy New Year
+                                <div class="rule-shape">&starf;</div>
+                            </div>
+                        </div>
+            
+                    </div>
                 </div>
-            </snowman>
-
+            
+                <div class="tag-container">
+                    <div class="tag">
+            
+                        <div class="tag-side tag-2-side">
+                            <div class="tag-text tag-2-text">
+                                Happy<br />Holidays
+                                <div class="rule-diagonal"></div>
+                            </div>
+                        </div>
+            
+                        <div class="tag-side tag-2-side is-back">
+                            <div class="tag-text tag-2-text">
+                                May your ev'ry wish come true
+                                <div class="rule-diagonal"></div>
+                            </div>
+                        </div>
+            
+                    </div>
+                </div>
+            
+                <div class="tag-container">
+                    <div class="tag">
+            
+                        <div class="tag-side tag-3-side">
+                            <div class="tag-text tag-3-text">
+                                Feliz<br />Navidad
+                                <div class="rule-shape">&#10052;</div>
+                            </div>
+                        </div>
+            
+                        <div class="tag-side tag-3-side is-back">
+                            <div class="tag-text tag-3-text">
+                                Prospero Año Nuevo
+                                <div class="rule-shape">&#10052;</div>
+                            </div>
+                        </div>
+            
+                    </div>
+                </div>
+            
+            </div>
             
             
             <script src="app.js"></script>
@@ -58,7 +161,28 @@
 
             </script>
 
-           
+
+
+</div>
+
+<div id="winnerMessage" class="hidden">
+    <h2>Chúc mừng người chiến thắng!</h2>
+    <p class="winnerName"></p>
+</div>
+<br>
+<br>
+<br>
+
+    <audio id="backgroundMusic" autoplay loop >
+        <source src="/Spin_Wheel/christmas song.mp3" type="audio/mpeg">
+        
+    </audio>
+    <audio id="spinSound">
+        <source src="/Spin_Wheel/spinwheelsong.mp3" type="audio/mpeg">
+        
+    </audio>
+
+
 
 </body>
 </html>
