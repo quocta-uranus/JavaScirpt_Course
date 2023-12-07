@@ -13,7 +13,7 @@ function addName() {
             "name": newName,
             "value": data.length + 1 
         });
- 
+
         redrawChart();
 
         var nameContainer = document.createElement('div');
@@ -127,66 +127,42 @@ function redrawChart() {
                 oldpick.push(picked);
             } 
             rotation += 90 - Math.round(ps/2);
-        vis.transition()
-        .duration(5000)
+          vis.transition()
+        .duration(3000)
         .attrTween("transform", rotTween)
         .each("end", function() {
-            
-  var selectedName = data[picked].name;
+            // Xóa màu của tên được chọn
+            var selectedName = data[picked].name;
+            var indexToRemove = data.findIndex(function(item) {
+                return item.name === selectedName;
+            });
+            if (indexToRemove !== -1) {
+                data.splice(indexToRemove, 1);
+                redrawChart(); // Cập nhật lại hình tròn sau khi xóa tên đã chọn
+            }
 
-    // Lấy tất cả các phần tử chứa tên
-    var nameContainers = document.querySelectorAll('.name-container');
-    nameContainers.forEach(function(container) {
-        var nameText = container.querySelector('span');
-        if (nameText.textContent === selectedName) {
-            container.remove(); // Xóa phần tử chứa tên được chọn
-        }
-    });
+            // Xóa phần tử name container
+            var nameContainerToRemove = document.querySelector('.name-container');
+            if (nameContainerToRemove) {
+                nameContainerToRemove.remove();
+                
+            }
 
-    // Xóa tên đã chọn khỏi dữ liệu
-    var indexToRemove = data.findIndex(function(item) {
-        return item.name === selectedName;
-    });
-    if (indexToRemove !== -1) {
-        data.splice(indexToRemove, 1);
-        redrawChart(); // Cập nhật lại hình tròn sau khi xóa tên đã chọn
-    }
-
-    oldrotation = rotation;
-             showWinnerAnimation();
-        });
-       
-        var spinSound = document.getElementById('spinSound');
-        spinSound.play();
-
-function showWinnerAnimation() {
-    // Hiển thị người chiến thắng nếu chỉ còn một người
-        if (data.length === 1) {
-                        var winner = data[0].name;
-            var winnerElement = document.getElementById('winnerMessage');
-        var winnerNameElement = document.querySelector('.winnerName');
-        winnerNameElement.textContent = winner;
-
-        // Kích hoạt animation CSS
-        winnerElement.style.display = 'block';
-        setTimeout(function() {
-            winnerElement.classList.remove('hidden');
-        }, 100);
-        setTimeout(function() {
-    var winnerElement = document.getElementById('winnerMessage');
-    winnerElement.style.display = 'none';
-}, 5000);
-container.on("click", null);
-    }
-    }
-
+            oldrotation = rotation;
         
-    } 
 
+    });
+      var resultElement = document.getElementById('result');
+    var resultText = data[picked].name; // Thay "result" bằng tên key chứa kết quả trong đối tượng data
+    resultElement.textContent = resultText;
 
-       
  
+   
+          
     
+                 
+        } 
+        
            svg.append("g")
             .attr("transform", "translate(" + (w + padding.left + padding.right) + "," + ((h/2)+padding.top) + ")")
             .append("path")
@@ -209,7 +185,6 @@ container.on("click", null);
             
 }
 
-
 var padding = {top:20, right:40, bottom:0, left:0},
             w = 500 - padding.left - padding.right,
             h = 500 - padding.top  - padding.bottom,
@@ -222,8 +197,7 @@ var padding = {top:20, right:40, bottom:0, left:0},
             //randomNumbers = getRandomNumbers();
         //http://osric.com/bingo-card-generator/?title=HTML+and+CSS+BINGO!&words=padding%2Cfont-family%2Ccolor%2Cfont-weight%2Cfont-size%2Cbackground-color%2Cnesting%2Cbottom%2Csans-serif%2Cperiod%2Cpound+sign%2C%EF%B9%A4body%EF%B9%A5%2C%EF%B9%A4ul%EF%B9%A5%2C%EF%B9%A4h1%EF%B9%A5%2Cmargin%2C%3C++%3E%2C{+}%2C%EF%B9%A4p%EF%B9%A5%2C%EF%B9%A4!DOCTYPE+html%EF%B9%A5%2C%EF%B9%A4head%EF%B9%A5%2Ccolon%2C%EF%B9%A4style%EF%B9%A5%2C.html%2CHTML%2CCSS%2CJavaScript%2Cborder&freespace=true&freespaceValue=Web+Design+Master&freespaceRandom=false&width=5&height=5&number=35#results
         var data = [
-              
-
+          
         ];
         var svg = d3.select('#chart')
             .append("svg")
@@ -307,8 +281,6 @@ var padding = {top:20, right:40, bottom:0, left:0},
             
 
         }
-
-      
         //make arrow
         
         
@@ -319,19 +291,5 @@ var padding = {top:20, right:40, bottom:0, left:0},
           };
         }
         
-       $('.container').on('mouseover', function(){
-  $('.bauble').addClass('light');
-  $('.star').addClass('star-light');
-})
-
-$('.container').on('mouseout', function(){
-  $('.bauble').removeClass('light');
-}) 
+        
       
-window.addEventListener('load', function() {
-  var audio = document.getElementById('backgroundMusic');
-  audio.play();
-});
-
-
-
