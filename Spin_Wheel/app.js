@@ -38,6 +38,10 @@ function addName() {
 
             nameContainer.remove()
         });
+         input.parentElement.insertBefore(nameContainer, input);
+    
+    // Xóa tên đã nhập khỏi ô input
+    input.value = input.value.replace(newName, '').trim();
 
         nameContainer.appendChild(nameText);
         nameContainer.appendChild(deleteButton);
@@ -50,7 +54,7 @@ function handleKeyPress(event) {
     if (event.key === 'Enter' && !event.shiftKey) {
         event.preventDefault();
         addName();
-        input.value += '\n'; 
+        
     }
 }
 function getRandomNumbers(){
@@ -249,10 +253,7 @@ var padding = {top:20, right:40, bottom:0, left:0},
     $('.bauble').removeClass('light');
 }) 
       
-    window.addEventListener('load', function() {
-    var audio = document.getElementById('backgroundMusic');
-        audio.play();
-});
+    
 
 function Congrat () {
     let W = window.innerWidth;
@@ -363,4 +364,31 @@ Draw();
 
 }
 
+//Magic goes here... 
 
+var cat = document.getElementById("cat"),
+		shadowBack = document.getElementsByClassName("shadow-2"),
+		shadowMed = document.getElementsByClassName("shadow-1"),
+		tlc = new TimelineLite();
+		tl = new TimelineLite();
+
+tlc
+	.fromTo(cat, 1, {opacity:1, y:60}, {opacity:1, y:0, delay:2, ease:Power4.easeOut});
+
+tl 
+	.fromTo(shadowBack, 2, {opacity:0}, {opacity:.5, repeat:-1, yoyo:true, delay:.5})
+	.fromTo(shadowMed, 2, {opacity:.25}, {opacity:.5, repeat:-1, yoyo:true,})
+
+
+cat.onmouseover = function(e) {
+	tlc.reverse();
+};
+cat.onmouseout = function(e) {
+	tlc.play();
+};
+
+
+window.onload = function() {
+    var audio = document.getElementById('backgroundMusic');
+    audio.play(); // Bắt đầu phát nhạc khi trang được tải
+};
