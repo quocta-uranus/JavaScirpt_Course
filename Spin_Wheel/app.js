@@ -388,7 +388,11 @@ cat.onmouseout = function(e) {
 };
 
 
-window.onload = function() {
-    var audio = document.getElementById('backgroundMusic');
-    audio.play(); // Bắt đầu phát nhạc khi trang được tải
-};
+// window.onload = function() {
+//     var audio = document.getElementById('backgroundMusic');
+//     audio.play(); // Bắt đầu phát nhạc khi trang được tải
+// };
+// const myAudio = () => {
+//     var audio = document.getElementById('backgroundMusic');
+//     audio.play();
+// }

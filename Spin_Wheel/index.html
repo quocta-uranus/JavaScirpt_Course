@@ -11,7 +11,7 @@
     <canvas id="canvas"></canvas>
     
 </head>
-<body>
+<body onload="myAudio()">
     <div class="info">
         <div>
          
@@ -137,7 +137,7 @@
 <br>
 <br>
 
-    <audio id="backgroundMusic" autoplay loop >
+    <audio id="backgroundMusic" autoplay loop allow="autoplay" >
         <source src="./music/christmas song.mp3 " type="audio/mpeg">
         
     </audio>
@@ -458,6 +458,17 @@
 
 
 
+
+<script language="javascript">
+
+    window.onload = async () => {
+        const audio = await document.getElementById('backgroundMusic');
+        if (audio) {
+            audio.play();
+        }
+    };
+
+</script>
 </body>
 </html>
 
