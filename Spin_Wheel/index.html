@@ -6,44 +6,43 @@
     <title>Spin</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    <img class="logo" src="./image.png" alt="">
+    
+    <img class="logo" src="./img/uranuslogo.png" alt="">
 
     <canvas id="canvas"></canvas>
     
 </head>
 <body onload="myAudio()">
+
     <div class="info">
-        <div>
-         
             
-            <div class="list">
-                <label>List Name</label>
+           
+                <label class="list-name">List Name</label>
                  
                 <input class="input"></input>
 
-                
-            </div>
           
+         
+                <button id="create" class="button">Create</button>
+          
+             <div id="nameContainers">
+           
+             <div class="name-container">
+                        <span>Uranus</span>
+                        <button class="delete-button ">:D</button>
+                    </div>
             </div>
-            <div>
-                <button id="create">Create</button>
-            </div>
+           
         
            
-        </div>
+       
     
     </div>
     <div id="chart"></div>
-            <div id="question">
-                <h1></h1>
-            </div>
-        <div class="contain"> 
+ 
+     <div class="contain"> 
 
-            
-                
-            </div>
-            
-                        <div class="tags">
+     <div class="tags">
             
                 <div class="tag-container">
                     <div class="tag">
@@ -108,25 +107,19 @@
                 </div>
             
             </div>
-            
-            
-            <script src="app.js"></script>
+
+     <script src="app.js"></script>
 
 
-            <script type='text/javascript'>
+ <script type='text/javascript'>
 
                 //<![CDATA[
 
                 document.write('<style type="text/css">body{background:#BAE5F6;padding-bottom:150px}</style><img style="position:fixed;z-index:9999;top:0;left:0" src="https://lh6.googleusercontent.com/-c8CoUvCourw/UMcWWTeBE-I/AAAAAAAABcU/q-j9X7733zw/s150/top-left.png"/><img style="position:fixed;z-index:9999;top:0;right:0" src="https://lh5.googleusercontent.com/-JABklf9ModU/UMcWWzSSJ4I/AAAAAAAABcY/g4sZMhrgjXU/s150/top-right.png"/><div style="position:fixed;z-index:9999;bottom:0;left:0;width:100%;height:104px;background:url(https://lh6.googleusercontent.com/-kph53UsoxM4/UMczVhTsCVI/AAAAAAAABcs/DVTyvtz7blc/s1600/footer.png) repeat-x bottom left;"></div><img style="position:fixed;z-index:9999;bottom:30px;left:30px" src="https://lh4.googleusercontent.com/-mEgGUg-ou4k/UMcz0qy2NhI/AAAAAAAABc0/gF1uW4iE6y0/s180/bottom-left.png"/>'); var no = 100; var hidesnowtime = 0; var snowdistance = 'pageheight'; var ie4up = (document.all) ? 1 : 0; var ns6up = (document.getElementById && !document.all) ? 1 : 0; function iecompattest() { return (document.compatMode && document.compatMode != 'BackCompat') ? document.documentElement : document.body } var dx, xp, yp; var am, stx, sty; var i, doc_width = 800, doc_height = 600; if (ns6up) { doc_width = self.innerWidth; doc_height = self.innerHeight } else if (ie4up) { doc_width = iecompattest().clientWidth; doc_height = iecompattest().clientHeight } dx = new Array(); xp = new Array(); yp = new Array(); am = new Array(); stx = new Array(); sty = new Array(); for (i = 0; i < no; ++i) { dx[i] = 0; xp[i] = Math.random() * (doc_width - 50); yp[i] = Math.random() * doc_height; am[i] = Math.random() * 20; stx[i] = 0.02 + Math.random() / 10; sty[i] = 0.7 + Math.random(); if (ie4up || ns6up) { document.write('<div id="dot' + i + '" style="POSITION:absolute;Z-INDEX:' + i + ';VISIBILITY:visible;TOP:15px;LEFT:15px;"><span style="font-size:18px;color:#fff">*</span><\/div>') } } function snowIE_NS6() { doc_width = ns6up ? window.innerWidth - 10 : iecompattest().clientWidth - 10; doc_height = (window.innerHeight && snowdistance == 'windowheight') ? window.innerHeight : (ie4up && snowdistance == 'windowheight') ? iecompattest().clientHeight : (ie4up && !window.opera && snowdistance == 'pageheight') ? iecompattest().scrollHeight : iecompattest().offsetHeight; for (i = 0; i < no; ++i) { yp[i] += sty[i]; if (yp[i] > doc_height - 50) { xp[i] = Math.random() * (doc_width - am[i] - 30); yp[i] = 0; stx[i] = 0.02 + Math.random() / 10; sty[i] = 0.7 + Math.random() } dx[i] += stx[i]; document.getElementById('dot' + i).style.top = yp[i] + 'px'; document.getElementById('dot' + i).style.left = xp[i] + am[i] * Math.sin(dx[i]) + 'px' } snowtimer = setTimeout('snowIE_NS6()', 10) } function hidesnow() { if (window.snowtimer) { clearTimeout(snowtimer) } for (i = 0; i < no; i++)document.getElementById('dot' + i).style.visibility = 'hidden' } if (ie4up || ns6up) { snowIE_NS6(); if (hidesnowtime > 0) setTimeout('hidesnow()', hidesnowtime * 1000) }
 
                 //]]>
+ </script>
 
-            </script>
-        </div>
-    
-
-
-</div>
 
 <div id="winnerMessage" class="hidden">
     <h2>Chúc mừng người chiến thắng!</h2>
@@ -138,12 +131,15 @@
 <br>
 
     <audio id="backgroundMusic" autoplay loop allow="autoplay" >
-        <source src="./music/christmas song.mp3 " type="audio/mpeg">
+        <source src="./music/christmassong.mp3" type="audio/mpeg">
         
     </audio>
     <audio id="spinSound">
         <source src="./music/spinwheelsong.mp3" type="audio/mpeg">
         
+    </audio>
+    <audio id="clapHand">
+        <source src="./music/clap.mp3" type="audio/mpeg">
     </audio>
 
 <ul class="lightrope">
@@ -190,163 +186,21 @@
     <li></li>
     <li></li>
 </ul>
-<div class="canvas" role="img" aria-label="Cartoon of Santa Claus on top of a snowy hill">
-    <div class="hand"></div>
-    <div class="hand"></div>
-    <div class="arms"></div>
-    <div class="leg"></div>
-    <div class="leg"></div>
-    <div class="body">
-        <div class="belt"></div>
-    </div>
-    <div class="beard"></div>
-    <div class="head">
-        <div class="cheek"></div>
-        <div class="cheek"></div>
-        <div class="eye"></div>
-        <div class="eye"></div>
-        <div class="mustache"></div>
-        <div class="mustache"></div>
-        <div class="hat"></div>
-    </div>
-</div>
 
-<div class="gift">
-    <div class="gift__bow">
-        <div class="gift__bow-left"></div>
-        <div class="gift__bow-right"></div>
-        <div class="gift__bow-center"></div>
-    </div>
-    <div class="gift__box">
-        <div class="gift__lid-shadow"></div>
-    </div>
-    <div class="gift__lid"></div>
-    <div class="gift__star gift__star--1"></div>
-    <div class="gift__star gift__star--2"></div>
-    <div class="gift__star gift__star--3"></div>
-    <div class="gift__star gift__star--4"></div>
-    <div class="gift__star gift__star--5"></div>
-</div>
-<div class="scene">
-    <div class="box"></div>
-    <div class="cat"></div>
-    <!-- tree -->
-    <div class="tree">
-        <div class="triangle layer-one"></div>
-        <div class="triangle layer-two"></div>
-        <div class="triangle layer-three"></div>
-        <div class="triangle layer-four"></div>
-        <div class="triangle layer-five"></div>
-        <div class="tree-stem"></div>
-        <!-- lights -->
-        <div class="tree-light light-one">
-            <div class="light-connector"></div>
-            <div class="light chroma-light-color"> </div>
-        </div>
-        <div class="tree-light light-two">
-            <div class="light-connector"></div>
-            <div class="light"></div>
-        </div>
-        <div class="tree-light light-three">
-            <div class="light-connector"></div>
-            <div class="light"></div>
-        </div>
-        <div class="tree-light light-four">
-            <div class="light-connector"></div>
-            <div class="light"></div>
-        </div>
-        <div class="tree-light light-five">
-            <div class="light-connector"></div>
-            <div class="light"></div>
-        </div>
-        <div class="tree-light light-six">
-            <div class="light-connector"></div>
-            <div class="light"></div>
-        </div>
-        <div class="tree-light light-seven">
-            <div class="light-connector"></div>
-            <div class="light"></div>
-        </div>
-        <div class="tree-light light-eight">
-            <div class="light-connector"></div>
-            <div class="light"></div>
-        </div>
-        <div class="tree-light light-nine">
-            <div class="light-connector"></div>
-            <div class="light"></div>
-        </div>
 
-        <!-- presents -->
-        <div class="present box-one">
-            <div class="lid"></div>
-        </div>
-        <div class="present box-two">
-            <div class="lid-two"></div>
-        </div>
-        <div class="present box-three">
-            <div class="lid-three"></div>
-        </div>
-        <div class="present box-four">
-            <div class="lid-four"></div>
-        </div>
-        <div class="present box-five">
-            <div class="lid-five"></div>
-        </div>
-    </div>
 
-    <!-- cat -->
-    <div class="cat">
-        <div class="cat-one-lh"></div>
-        <div class="cat-one-rh"></div>
-        <div class="cat-one-le"></div>
-        <div class="cat-one-lec"></div>
-        <div class="cat-one-lecc"></div>
-        <div class="cat-one-center"></div>
-        <div class="cat-one-re"></div>
-        <div class="cat-one-rec"></div>
-        <div class="cat-one-recc"></div>
-        <div class="cat-one-eye"></div>
-        <div class="cat-one-eye-two"></div>
-        <div class="cat-one-nose"></div>
-        <div class="cat-one-whisker"></div>
-        <div class="cat-one-whisker-two"></div>
-        <div class="cat-one-paw"></div>
-        <div class="cat-one-paw-two"></div>
-        <div class="cat-paw-detail-r"></div>
-        <div class="cat-paw-detail-r-two"></div>
-        <div class="cat-paw-detail-l"></div>
-        <div class="cat-paw-detail-l-two"></div>
-    </div>
-
-    <!-- misc details -->
-    <div class="misc">
-        <div class="star s-one"></div>
-        <div class="star s-two"></div>
-        <div class="star s-three"></div>
-        <div class="star s-four"></div>
-    </div>
-
-    <div class="row-lights">
-        <div class="row-light rl-one"></div>
-        <div class="row-light rl-two"></div>
-        <div class="row-light rl-three"></div>
-        <div class="row-light rl-four"></div>
-        <div class="row-light rl-five"></div>
-        <div class="row-light rl-six"></div>
-    </div>
-</div>
 <main>
     <div class="card">
         <div class="card-container">
             <div class="circle"></div>
             <div class="card-front">
-                <h2>Christmas time</h2>
-                <img src="https://cdn.pixabay.com/photo/2012/03/03/22/57/bag-21467_960_720.jpg" alt="">
+                
+                <img src="./img/seven.png ">
             </div>
             <div class="card-back">
                 <span>from</span>
                 <span>to</span>
-                <img src="https://images.pexels.com/photos/5485112/pexels-photo-5485112.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                <img src="./img/kelvin.png"
                     alt="">
             </div>
         </div>
@@ -355,8 +209,122 @@
         <div class="card-container">
             <div class="circle"></div>
             <div class="card-front">
-                <h2>Merry Christmas</h2>
-                <img src="https://images.pexels.com/photos/1602744/pexels-photo-1602744.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                
+                <img src="./img/kelvin.png" alt="">
+            </div>
+            <div class="card-back">
+                <span>from</span>
+                <span>to</span>
+                <img src="./img/kelvin.png" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-container">
+            <div class="circle"></div>
+            <div class="card-front">
+                
+                <img src="./img/minh.png" alt="">
+            </div>
+            <div class="card-back">
+                <span>from</span>
+                <span>to</span>
+                <img src="./img/kelvin.png" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-container">
+            <div class="circle"></div>
+            <div class="card-front">
+                
+                <img src="./img/siri.png" alt="">
+            </div>
+            <div class="card-back">
+                <span>from</span>
+                <span>to</span>
+                <img src="./img/kelvin.png" alt="">
+            </div>
+        </div>
+    </div>
+     <div class="card">
+        <div class="card-container">
+            <div class="circle"></div>
+            <div class="card-front">
+                
+                <img src="./img/nalie.png" alt="">
+            </div>
+            <div class="card-back">
+                <span>from</span>
+                <span>to</span>
+                <img src="./img/kelvin.png"
+                    alt="">
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-container">
+            <div class="circle"></div>
+            <div class="card-front">
+              
+                <img src="./img/quyen.png" alt="">
+            </div>
+            <div class="card-back">
+                <span>from</span>
+                <span>to</span>
+                <img src="./img/kelvin.png" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-container">
+            <div class="circle"></div>
+            <div class="card-front">
+               
+                <img src="./img/linh.png" alt="">
+            </div>
+            <div class="card-back">
+                <span>from</span>
+                <span>to</span>
+                <img src="./img/kelvin.png" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-container">
+            <div class="circle"></div>
+            <div class="card-front">
+                
+                <img src="./img/trung.png" alt="">
+            </div>
+            <div class="card-back">
+                <span>from</span>
+                <span>to</span>
+                <img src="./img/kelvin.png" alt="">
+            </div>
+        </div>
+    </div>
+     <div class="card">
+        <div class="card-container">
+            <div class="circle"></div>
+            <div class="card-front">
+               
+                <img src="./img/quoc.png" alt="">
+            </div>
+            <div class="card-back">
+                <span>from</span>
+                <span>to</span>
+                <img src="./img/kelvin.png"
+                    alt="">
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-container">
+            <div class="circle"></div>
+            <div class="card-front">
+                
+                <img src="./img/an.png"
                     alt="">
             </div>
             <div class="card-back">
@@ -371,7 +339,7 @@
         <div class="card-container">
             <div class="circle"></div>
             <div class="card-front">
-                <img src="https://cdn.pixabay.com/photo/2015/12/12/22/35/snowman-1090261_960_720.jpg" alt="">
+                <img src="./img/tho.png" alt="">
             </div>
             <div class="card-back">
                 <span>from</span>
@@ -385,8 +353,8 @@
         <div class="card-container">
             <div class="circle"></div>
             <div class="card-front">
-                <h2>Merry Christmas</h2>
-                <img src="https://cdn.pixabay.com/photo/2014/11/27/22/44/gift-548290_960_720.jpg" alt="">
+                
+                <img src="./img/thanhem.png" alt="">
             </div>
             <div class="card-back">
                 <span>from</span>
@@ -400,7 +368,7 @@
         <div class="card-container">
             <div class="circle"></div>
             <div class="card-front">
-                <img src="https://cdn.pixabay.com/photo/2020/11/29/15/06/box-5788021_960_720.jpg" alt="">
+                <img src="./img/toan.png" alt="">
             </div>
             <div class="card-back">
                 <span>from</span>
@@ -414,8 +382,8 @@
         <div class="card-container">
             <div class="circle"></div>
             <div class="card-front">
-                <h2>Best wishes</h2>
-                <img src="https://cdn.pixabay.com/photo/2012/02/23/08/42/christmas-bauble-15738_960_720.jpg" alt="">
+               
+                <img src="./img/thoi.png" alt="">
             </div>
             <div class="card-back">
                 <span>from</span>
@@ -429,7 +397,7 @@
         <div class="card-container">
             <div class="circle"></div>
             <div class="card-front">
-                <img src="https://cdn.pixabay.com/photo/2017/11/14/00/57/christmas-2947257_960_720.jpg" alt="">
+                <img src="./img/khoa.png" alt="">
             </div>
             <div class="card-back">
                 <span>from</span>
@@ -443,7 +411,7 @@
         <div class="card-container">
             <div class="circle"></div>
             <div class="card-front">
-                <img src="https://images.unsplash.com/photo-1577201867028-6d7a8a243bd8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+                <img src="./img/khai.png"
                     alt="">
             </div>
             <div class="card-back">
@@ -461,7 +429,7 @@
 
 <script language="javascript">
 
-    window.onload = async () => {
+    window.onplay = async () => {
         const audio = await document.getElementById('backgroundMusic');
         if (audio) {
             audio.play();
