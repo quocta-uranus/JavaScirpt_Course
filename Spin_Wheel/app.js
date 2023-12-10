@@ -5,6 +5,7 @@ createButton.addEventListener('click', addName);
 input.addEventListener('keypress', handleKeyPress);
 
 function addName() {
+
     var allNames = input.value.split('\n'); 
     var newName = allNames[allNames.length - 1].trim();
    
@@ -16,9 +17,15 @@ function addName() {
  
         redrawChart();
 
-        var nameContainer = document.createElement('div');
-        nameContainer.classList.add('name-container'); 
+        // Không cần tạo name-container ở đây nữa
 
+        // Xóa tên đã nhập khỏi ô input
+        input.value = input.value.replace(newName, '').trim();
+
+        // Lấy đối tượng div đã tạo sẵn trong HTML
+        var nameContainers = document.getElementById('nameContainers');
+
+      
         var nameText = document.createElement('span');
         nameText.textContent = newName;
 
@@ -38,14 +45,18 @@ function addName() {
 
             nameContainer.remove()
         });
-         input.parentElement.insertBefore(nameContainer, input);
-    
-    // Xóa tên đã nhập khỏi ô input
-    input.value = input.value.replace(newName, '').trim();
 
+        // Tạo div name-container
+        var nameContainer = document.createElement('div');
+        nameContainer.classList.add('name-container'); 
+
+        // Thêm span và button vào div name-container
         nameContainer.appendChild(nameText);
         nameContainer.appendChild(deleteButton);
-        input.parentElement.insertBefore(nameContainer, input);
+
+        // Thêm div name-container vào div đã lấy được từ HTML
+        nameContainers.appendChild(nameContainer);
+
         input.value += '\n';
     }
 }
@@ -148,71 +159,105 @@ function redrawChart() {
         });
 
     // Xóa tên đã chọn khỏi dữ liệu
-    var indexToRemove = data.findIndex(function(item) {
+ var indexToRemove = data.findIndex(function(item) {
         return item.name === selectedName;
     });
     if (indexToRemove !== -1) {
         data.splice(indexToRemove, 1);
         redrawChart(); // Cập nhật lại hình tròn sau khi xóa tên đã chọn
+
+        // Kiểm tra nếu không còn tên nào trong vòng quay
+        if (data.length === 0 && spinCircleVisible) {
+            var spinCircle = document.querySelector('.chartholder circle');
+             var arrow = document.querySelector('.chartholder path');
+            if (spinCircle) {
+                spinCircle.style.display = 'none'; 
+                
+                spinCircleVisible = false; // Đặt biến spinCircleVisible thành false
+            }
+             if (arrow) {
+            arrow.style.display = 'none'; 
+            arrowVisible = false; //
+        }
+        }
     }
 
-    oldrotation = rotation;
-             showWinnerAnimation();
+            oldrotation = rotation;
+             showWinnerAnimation(selectedName);
               
         });
        
         var spinSound = document.getElementById('spinSound');
-        spinSound.play();
+       spinSound.play();
 
-function showWinnerAnimation() {
-    
-        if (data.length === 1) {
-                        var winner = data[0].name;
-            var winnerElement = document.getElementById('winnerMessage');
-        var winnerNameElement = document.querySelector('.winnerName');
-        winnerNameElement.textContent = winner;
+function showWinnerAnimation(selectedName) {
+    var winnerElement = document.getElementById('winnerMessage');
+    var winnerNameElement = document.querySelector('.winnerName');
+    var canvas = document.getElementById('canvas');
+    winnerNameElement.textContent = selectedName;
 
-        // Kích hoạt animation CSS
-        winnerElement.style.display = 'block';
+    // Kích hoạt animation CSS
+    winnerElement.style.display = 'block';
+    setTimeout(function() {
+        winnerElement.classList.remove('hidden');
+    //    Congrat();
+        var clapHand = document.getElementById('clapHand');
+       clapHand.play();
+        // Tạo một hàm setTimeout() bao bọc Congrat() để tự động tắt sau 5 giây
         setTimeout(function() {
-            winnerElement.classList.remove('hidden');
-            Congrat();
-        }, 100);
-        
+            var winnerElement = document.getElementById('winnerMessage');
+            winnerElement.style.display = 'none';
+            // Congrat();
+        }, 5000);
+    }, 100);
+            
 
-    }
-//      setTimeout(function() {
-//     var winnerElement = document.getElementById('winnerMessage');
-//     winnerElement.style.display = 'none';
-        
-// }, 5000);
-    }
+} 
+  
 
-        
     } 
+     var spinCircle = container.append("circle")
+    .attr("cx", 0)
+    .attr("cy", 0)
+    .attr("r", 60)
+    .style({"fill":"white","cursor":"pointer"});
 
+// Vẽ mũi tên bên trong hình tròn
+var arrowPath = "M" + (-30) + ",0L0," + (-15) + "L0," + (15) + "Z"; // Đường dẫn của mũi tên, điều chỉnh để thay đổi hình dạng
+var arrow = container.append("path")
+    .attr("d", arrowPath)
+    .attr("transform", "translate(60,0) rotate(-180)") // Di chuyển và quay mũi tên về phía bên phải
+    .style({"fill":"red"});
 
-       
  
+ let spinCircleVisible = true;
+ let arrowVisible = true;
+        
+
+
+
+       // draw spin circle
+ // Biến để theo dõi trạng thái hiển thị của vòng tròn quay
+
     
-           svg.append("g")
-            .attr("transform", "translate(" + (w + padding.left + padding.right) + "," + ((h/2)+padding.top) + ")")
-            .append("path")
-            .attr("d", "M-" + (r*.15) + ",0L0," + (r*.05) + "L0,-" + (r*.05) + "Z")
-            .style({"fill":"black"});
-        //draw spin circle
-        container.append("circle")
-            .attr("cx", 0)
-            .attr("cy", 0)
-            .attr("r", 60)
-            .style({"fill":"white","cursor":"pointer"});
-        //spin text
-        container.append("text")
-            .attr("x", 0)
-            .attr("y", 15)
-            .attr("text-anchor", "middle")
-            .text("SPIN")
-            .style({"font-weight":"bold", "font-size":"30px"});
+        //    svg.append("g")
+        //     .attr("transform", "translate(" + (w + padding.left + padding.right) + "," + ((h/2)+padding.top) + ")")
+        //     .append("path")
+        //     .attr("d", "M-" + (r*.15) + ",0L0," + (r*.05) + "L0,-" + (r*.05) + "Z")
+        //     .style({"fill":"black"});
+        // //draw spin circle
+        // container.append("circle")
+        //     .attr("cx", 0)
+        //     .attr("cy", 0)
+        //     .attr("r", 60)
+        //     .style({"fill":"white","cursor":"pointer"});
+        // //spin text
+        // container.append("text")
+        //     .attr("x", 0)
+        //     .attr("y", 15)
+        //     .attr("text-anchor", "middle")
+        //     .text("SPIN")
+        //     .style({"font-weight":"bold", "font-size":"30px"});
         
             
 }
@@ -230,7 +275,7 @@ var padding = {top:20, right:40, bottom:0, left:0},
             //randomNumbers = getRandomNumbers();
         //http://osric.com/bingo-card-generator/?title=HTML+and+CSS+BINGO!&words=padding%2Cfont-family%2Ccolor%2Cfont-weight%2Cfont-size%2Cbackground-color%2Cnesting%2Cbottom%2Csans-serif%2Cperiod%2Cpound+sign%2C%EF%B9%A4body%EF%B9%A5%2C%EF%B9%A4ul%EF%B9%A5%2C%EF%B9%A4h1%EF%B9%A5%2Cmargin%2C%3C++%3E%2C{+}%2C%EF%B9%A4p%EF%B9%A5%2C%EF%B9%A4!DOCTYPE+html%EF%B9%A5%2C%EF%B9%A4head%EF%B9%A5%2Ccolon%2C%EF%B9%A4style%EF%B9%A5%2C.html%2CHTML%2CCSS%2CJavaScript%2Cborder&freespace=true&freespaceValue=Web+Design+Master&freespaceRandom=false&width=5&height=5&number=35#results
         var data = [
-              
+                          
 
         ];
            
@@ -366,26 +411,6 @@ Draw();
 
 //Magic goes here... 
 
-var cat = document.getElementById("cat"),
-		shadowBack = document.getElementsByClassName("shadow-2"),
-		shadowMed = document.getElementsByClassName("shadow-1"),
-		tlc = new TimelineLite();
-		tl = new TimelineLite();
-
-tlc
-	.fromTo(cat, 1, {opacity:1, y:60}, {opacity:1, y:0, delay:2, ease:Power4.easeOut});
-
-tl 
-	.fromTo(shadowBack, 2, {opacity:0}, {opacity:.5, repeat:-1, yoyo:true, delay:.5})
-	.fromTo(shadowMed, 2, {opacity:.25}, {opacity:.5, repeat:-1, yoyo:true,})
-
-
-cat.onmouseover = function(e) {
-	tlc.reverse();
-};
-cat.onmouseout = function(e) {
-	tlc.play();
-};
 
 
 // window.onload = function() {
