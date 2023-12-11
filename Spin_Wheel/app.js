@@ -16,16 +16,20 @@ function addName() {
         });
  
         redrawChart();
-
+       
         // Không cần tạo name-container ở đây nữa
 
         // Xóa tên đã nhập khỏi ô input
         input.value = input.value.replace(newName, '').trim();
-
+        
         // Lấy đối tượng div đã tạo sẵn trong HTML
         var nameContainers = document.getElementById('nameContainers');
-
-      
+         var containerIdDynamic = 'name-container-' + `${data.length}` ;
+        var parts = containerIdDynamic.split('-');
+        console.log(parts); // Tách chuỗi thành các phần dựa trên dấu "-"
+        var valueToDelete = parts[parts.length - 1];    
+        console.log(valueToDelete);
+                
         var nameText = document.createElement('span');
         nameText.textContent = newName;
 
@@ -34,22 +38,32 @@ function addName() {
         deleteButton.classList.add('delete-button');
 
         deleteButton.addEventListener('click', function() {
-            var nameToDelete = nameText.textContent.trim();
-            var index = data.findIndex(function(item) {
-                return item.name === nameToDelete;
-            });
-            if (index !== -1) {
-                data.splice(index, 1); 
-                redrawChart(); 
+ var containerToRemove = document.getElementById(containerIdDynamic);
+
+            // Xử lý xóa name-container nếu tồn tại
+            if (containerToRemove) {
+                var index = data.findIndex(function(item) {
+                
+                    return item.value == valueToDelete ;  
+                    
+                });
+                console.log(index);
+                console.log(data);
+                
+
+                if (index !== -1) {
+                    data.splice(index, 1); 
+                    redrawChart(); 
+                }
+
+                // Xóa name-container cụ thể
+                containerToRemove.remove();
             }
-
-            nameContainer.remove()
         });
-
         // Tạo div name-container
         var nameContainer = document.createElement('div');
         nameContainer.classList.add('name-container'); 
-
+         nameContainer.setAttribute('id', containerIdDynamic);
         // Thêm span và button vào div name-container
         nameContainer.appendChild(nameText);
         nameContainer.appendChild(deleteButton);
@@ -59,6 +73,7 @@ function addName() {
 
         input.value += '\n';
     }
+  
 }
 
 function handleKeyPress(event) {
@@ -147,22 +162,30 @@ function redrawChart() {
         .attrTween("transform", rotTween)
         .each("end", function() {
             
-    var selectedName = data[picked].name;
-
-        // Lấy tất cả các phần tử chứa tên
+   
+      var selectedValue = data[picked].value;
+      var selectedName = data[picked].name;
+      console.log(selectedValue);
+    
+        var indexToRemove = data.findIndex(function(item) {
+        return item.value === selectedValue;
+    });      
+    console.log(indexToRemove);
+        
         var nameContainers = document.querySelectorAll('.name-container');
         nameContainers.forEach(function(container) {
-            var nameText = container.querySelector('span');
-            if (nameText.textContent === selectedName) {
-                container.remove(); // Xóa phần tử chứa tên được chọn
-            }
-        });
+    var containerId = container.id; 
+    var parts1 = containerId.split('-');
+    var valueFromId = parts1[parts1.length - 1]; 
 
-    // Xóa tên đã chọn khỏi dữ liệu
- var indexToRemove = data.findIndex(function(item) {
-        return item.name === selectedName;
-    });
-    if (indexToRemove !== -1) {
+    if (parseInt(valueFromId) === selectedValue) {
+        container.remove(); // Xóa phần tử chứa tên được chọn
+    }
+        });
+        
+
+
+      if (indexToRemove !== -1) {
         data.splice(indexToRemove, 1);
         redrawChart(); // Cập nhật lại hình tròn sau khi xóa tên đã chọn
 
@@ -170,6 +193,7 @@ function redrawChart() {
         if (data.length === 0 && spinCircleVisible) {
             var spinCircle = document.querySelector('.chartholder circle');
              var arrow = document.querySelector('.chartholder path');
+             var spinText = document.querySelector('.chartholder text');
             if (spinCircle) {
                 spinCircle.style.display = 'none'; 
                 
@@ -179,9 +203,13 @@ function redrawChart() {
             arrow.style.display = 'none'; 
             arrowVisible = false; //
         }
+            if(spinText) {
+                    spinText.style.display = 'none';
+                    spinTextVisible = false;
         }
     }
-
+    }
+        
             oldrotation = rotation;
              showWinnerAnimation(selectedName);
               
@@ -229,7 +257,19 @@ var arrow = container.append("path")
     .attr("transform", "translate(60,0) rotate(-180)") // Di chuyển và quay mũi tên về phía bên phải
     .style({"fill":"red"});
 
- 
+var spinText = container.append("text")
+    .attr("x", 0)
+    .attr("y", 15)
+    .attr("text-anchor", "middle")
+    .text("SPIN")
+    .style({
+        "font-family": "Arial, sans-serif",
+        "font-weight": "bold",
+        "font-size": "36px",
+        "fill": "red" // Màu sắc của chữ là xanh
+    });
+
+let spinTextVisible = true;
  let spinCircleVisible = true;
  let arrowVisible = true;
         
