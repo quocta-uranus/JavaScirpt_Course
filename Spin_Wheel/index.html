@@ -14,30 +14,22 @@
 </head>
 <body onload="myAudio()">
 
-    <div class="info">
-            
-           
-                <label class="list-name">List Name</label>
-                 
-                <input class="input"></input>
-
-          
-         
-                <button id="create" class="button">Create</button>
-          
-             <div id="nameContainers">
-           
-             <div class="name-container">
-                        <span>Uranus</span>
-                        <button class="delete-button ">:D</button>
-                    </div>
-            </div>
-           
-        
-           
-       
-    
+<div class="info">
+    <div class="list-info">
+        <label class="list-name">List Name</label>
+        <input class="input"></input>
+        <button id="create" class="button">Create</button>
     </div>
+    <div id="nameContainers" class="name-container-wrapper">
+        <!-- Nơi chứa các tên -->
+        <div class="name-container">
+            <span>Uranus</span>
+            <button class="delete-button">:D</button>
+        </div>
+        <!-- Các phần tử khác nếu có -->
+    </div>
+</div>
+
     <div id="chart"></div>
  
      <div class="contain"> 
@@ -140,6 +132,7 @@
     </audio>
     <audio id="clapHand">
         <source src="./music/clap.mp3" type="audio/mpeg">
+
     </audio>
 
 <ul class="lightrope">
@@ -309,7 +302,7 @@
             <div class="circle"></div>
             <div class="card-front">
                
-                <img src="./img/quoc.png" alt="">
+                <img src="./img/aris.png" alt="">
             </div>
             <div class="card-back">
                 <span>from</span>
@@ -364,6 +357,7 @@
             </div>
         </div>
     </div>
+    
     <div class="card">
         <div class="card-container">
             <div class="circle"></div>

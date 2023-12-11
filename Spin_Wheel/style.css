@@ -29,6 +29,7 @@ canvas {
 .list{
     position: absolute;
     
+    
 
 }
 .input{
@@ -193,7 +194,35 @@ display: inline-block;
 .name-container span {
     font-size: 18px;
     font-weight: bold;
+    transition: transform 0.3s ease-out;
 }
+.info{
+    
+    padding-top: 8px;
+    /* transition: transform 1s ease-out; */
+    /* transform: translateX(-578px); */
+}
+.info:hover  {
+
+    /* transform: translateX(0) */
+    /* Điều chỉnh khoảng cách di chuyển */
+}
+/* .list-info:hover+.name-container-wrapper {
+    max-height: 100px;
+  
+} 
+/* .list-info:hover+.name-container-wrapper .name-container {
+    transform: translateX(0);
+}
+.name-container {
+    transform: translateX(-100%);
+} 
+
+.name-container-wrapper {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.8s ease-out;
+}  */
 .name-container .delete-button {
     background-color: #f44336;
     color: white;
