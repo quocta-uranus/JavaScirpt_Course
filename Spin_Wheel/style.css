@@ -9,7 +9,7 @@ html {
 }
 body {
   position: relative;
-    
+    background-color: #00f7a5;
    overflow-x: hidden;
     
     
@@ -22,7 +22,7 @@ body {
    
 }
 canvas {
-
+    position: absolute;
   
 }
 
@@ -199,13 +199,14 @@ display: inline-block;
 .info{
     
     padding-top: 8px;
-    /* transition: transform 1s ease-out; */
-    /* transform: translateX(-578px); */
+    margin-top: 100px;
+    transition: transform 1s ease-out; 
+     transform: translateX(-578px);
 }
 .info:hover  {
 
-    /* transform: translateX(0) */
-    /* Điều chỉnh khoảng cách di chuyển */
+     transform: translateX(0)
+   
 }
 /* .list-info:hover+.name-container-wrapper {
     max-height: 100px;
@@ -247,6 +248,12 @@ display: inline-block;
     left: 35%;
 
     
+}
+.btn {
+    top: 65px;
+    left: 100px;
+    height: 35px;
+    width: 35px;
 }
 .button {
     display: inline-block;
@@ -655,7 +662,7 @@ display: inline-block;
 }
 
 #winnerMessage {
-    display: none;
+    display: block;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -701,8 +708,8 @@ display: inline-block;
 #winnerMessage {
     display: none;
     position: fixed;
-    top: 30%;
-    left: 35%;
+    top: 33%;
+    left: 37%;
     transform: translate(-50%, -50%);
     padding: 100px;
     background-color: #fff;
@@ -1080,4 +1087,3 @@ main .card-back {
     margin: 0;
     padding: 0;
 }
-

@@ -4,17 +4,74 @@ var input = document.querySelector('.input');
 createButton.addEventListener('click', addName);
 input.addEventListener('keypress', handleKeyPress);
 
+var volumeIcon = document.getElementById('volumeIcon');
+var backgroundMusic = document.getElementById('backgroundMusic');
+
+
+// Thêm sự kiện click cho icon volume
+volumeIcon.addEventListener('click', test);
+
+function test() {
+console.log('vao day');
+    if (backgroundMusic.paused) {
+        
+        backgroundMusic.play();
+        volumeIcon.classList.add('playing');
+            } else {
+        // Nếu âm nhạc đang phát, tạm dừng lại
+        backgroundMusic.pause();
+        // Thay đổi biểu tượng volume (nếu cần)
+        volumeIcon.classList.remove('playing'); // Loại bỏ class "playing" để chỉ trạng thái tạm dừng
+    }
+};
+var  reset = document.getElementById('reset');
+reset.addEventListener('click', reSet);
+
+function reSet() {
+    data = [] ; 
+    
+    redrawChart();
+              if (data.length === 0) {
+            var spinCircle = document.querySelector('.chartholder circle');
+             var arrow = document.querySelector('.chartholder path');
+             var spinText = document.querySelector('.chartholder text');
+            if (spinCircle) {
+                spinCircle.style.display = 'none'; 
+                
+                spinCircleVisible = false; // Đặt biến spinCircleVisible thành false
+            }
+             if (arrow) {
+            arrow.style.display = 'none'; 
+            arrowVisible = false; //
+        }
+            if(spinText) {
+                    spinText.style.display = 'none';
+                    spinTextVisible = false;
+        }
+    }
+         var nameContainers = document.getElementById('nameContainers');
+        nameContainers.innerHTML = ''; 
+
+}
+
+
+
 function addName() {
 
     var allNames = input.value.split('\n'); 
     var newName = allNames[allNames.length - 1].trim();
+
+       var maxLength = 15;
+    if (newName.length > maxLength) {
+        newName = newName.substring(0, maxLength); // Cắt bớt tên nếu vượt quá độ dài cho phép
+    }
    
     if (newName !== '') {
         data.push({
             "name": newName,
             "value": data.length + 1 
         });
- 
+        
         redrawChart();
        
         // Không cần tạo name-container ở đây nữa
@@ -24,6 +81,7 @@ function addName() {
         
         // Lấy đối tượng div đã tạo sẵn trong HTML
         var nameContainers = document.getElementById('nameContainers');
+        
          var containerIdDynamic = 'name-container-' + `${data.length}` ;
         var parts = containerIdDynamic.split('-');
         console.log(parts); // Tách chuỗi thành các phần dựa trên dấu "-"
@@ -36,9 +94,11 @@ function addName() {
         var deleteButton = document.createElement('button');
         deleteButton.innerHTML = 'Xóa';
         deleteButton.classList.add('delete-button');
+        console.log(data);
+        console.log(nameContainer);
 
         deleteButton.addEventListener('click', function() {
- var containerToRemove = document.getElementById(containerIdDynamic);
+        var containerToRemove = document.getElementById(containerIdDynamic);
 
             // Xử lý xóa name-container nếu tồn tại
             if (containerToRemove) {
@@ -228,27 +288,41 @@ function showWinnerAnimation(selectedName) {
     winnerElement.style.display = 'block';
     setTimeout(function() {
         winnerElement.classList.remove('hidden');
-    //    Congrat();
+        Congrat()
+          canvas.style.display = 'block';
         var clapHand = document.getElementById('clapHand');
        clapHand.play();
         // Tạo một hàm setTimeout() bao bọc Congrat() để tự động tắt sau 5 giây
         setTimeout(function() {
             var winnerElement = document.getElementById('winnerMessage');
             winnerElement.style.display = 'none';
-            // Congrat();
+            canvas.style.display = 'none';
         }, 5000);
     }, 100);
-            
-
+        
 } 
   
 
     } 
-     var spinCircle = container.append("circle")
+     
+
+
+var defs = svg.append("defs");
+
+defs.append("pattern")
+    .attr("id", "circleImage")
+    .attr("height", 120) // Điều chỉnh kích thước ảnh
+    .attr("width", 120)
+    .append("image")
+    .attr("href", "./img/seven.png")
+    .attr("height", 120)
+    .attr("width", 120);
+
+var spinCircle = container.append("circle")
     .attr("cx", 0)
     .attr("cy", 0)
     .attr("r", 60)
-    .style({"fill":"white","cursor":"pointer"});
+    .style("fill", "url(#circleImage)");
 
 // Vẽ mũi tên bên trong hình tròn
 var arrowPath = "M" + (-30) + ",0L0," + (-15) + "L0," + (15) + "Z"; // Đường dẫn của mũi tên, điều chỉnh để thay đổi hình dạng
@@ -257,17 +331,17 @@ var arrow = container.append("path")
     .attr("transform", "translate(60,0) rotate(-180)") // Di chuyển và quay mũi tên về phía bên phải
     .style({"fill":"red"});
 
-var spinText = container.append("text")
-    .attr("x", 0)
-    .attr("y", 15)
-    .attr("text-anchor", "middle")
-    .text("SPIN")
-    .style({
-        "font-family": "Arial, sans-serif",
-        "font-weight": "bold",
-        "font-size": "36px",
-        "fill": "red" // Màu sắc của chữ là xanh
-    });
+// var spinText = container.append("text")
+//     .attr("x", 0)
+//     .attr("y", 15)
+//     .attr("text-anchor", "middle")
+//     .text("SPIN")
+//     .style({
+//         "font-family": "Arial, sans-serif",
+//         "font-weight": "bold",
+//         "font-size": "36px",
+//         "fill": "red" // Màu sắc của chữ là xanh
+//     });
 
 let spinTextVisible = true;
  let spinCircleVisible = true;
@@ -329,15 +403,6 @@ var padding = {top:20, right:40, bottom:0, left:0},
           };
         }
         
-       $('.container').on('mouseover', function(){
-            $('.bauble').addClass('light');
-            $('.star').addClass('star-light');
-})
-
-    $('.container').on('mouseout', function(){
-    $('.bauble').removeClass('light');
-}) 
-      
     
 
 function Congrat () {
@@ -448,6 +513,13 @@ Draw();
   
 
 }
+
+
+
+// Lấy các phần tử từ DOM
+
+
+
 
 //Magic goes here... 
 
