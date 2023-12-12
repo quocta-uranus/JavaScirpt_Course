@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spin</title>
     <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     
     <img class="logo" src="./img/uranuslogo.png" alt="">
@@ -12,8 +14,14 @@
     <canvas id="canvas"></canvas>
     
 </head>
-<body onload="myAudio()">
+<body>
+        <button id="volumeIcon" class="button btn">
+            <i id ="icon" class="  fas fa-volume-up"></i>
+            <audio id="backgroundMusic" src="./music/christmassong.mp3" loop></audio>
+        </button>
+        <button id="reset" class="button btn">Reset</button>
 
+        
 <div class="info">
     <div class="list-info">
         <label class="list-name">List Name</label>
@@ -103,13 +111,13 @@
      <script src="app.js"></script>
 
 
- <script type='text/javascript'>
+<script type='text/javascript'>
 
                 //<![CDATA[
 
                 document.write('<style type="text/css">body{background:#BAE5F6;padding-bottom:150px}</style><img style="position:fixed;z-index:9999;top:0;left:0" src="https://lh6.googleusercontent.com/-c8CoUvCourw/UMcWWTeBE-I/AAAAAAAABcU/q-j9X7733zw/s150/top-left.png"/><img style="position:fixed;z-index:9999;top:0;right:0" src="https://lh5.googleusercontent.com/-JABklf9ModU/UMcWWzSSJ4I/AAAAAAAABcY/g4sZMhrgjXU/s150/top-right.png"/><div style="position:fixed;z-index:9999;bottom:0;left:0;width:100%;height:104px;background:url(https://lh6.googleusercontent.com/-kph53UsoxM4/UMczVhTsCVI/AAAAAAAABcs/DVTyvtz7blc/s1600/footer.png) repeat-x bottom left;"></div><img style="position:fixed;z-index:9999;bottom:30px;left:30px" src="https://lh4.googleusercontent.com/-mEgGUg-ou4k/UMcz0qy2NhI/AAAAAAAABc0/gF1uW4iE6y0/s180/bottom-left.png"/>'); var no = 100; var hidesnowtime = 0; var snowdistance = 'pageheight'; var ie4up = (document.all) ? 1 : 0; var ns6up = (document.getElementById && !document.all) ? 1 : 0; function iecompattest() { return (document.compatMode && document.compatMode != 'BackCompat') ? document.documentElement : document.body } var dx, xp, yp; var am, stx, sty; var i, doc_width = 800, doc_height = 600; if (ns6up) { doc_width = self.innerWidth; doc_height = self.innerHeight } else if (ie4up) { doc_width = iecompattest().clientWidth; doc_height = iecompattest().clientHeight } dx = new Array(); xp = new Array(); yp = new Array(); am = new Array(); stx = new Array(); sty = new Array(); for (i = 0; i < no; ++i) { dx[i] = 0; xp[i] = Math.random() * (doc_width - 50); yp[i] = Math.random() * doc_height; am[i] = Math.random() * 20; stx[i] = 0.02 + Math.random() / 10; sty[i] = 0.7 + Math.random(); if (ie4up || ns6up) { document.write('<div id="dot' + i + '" style="POSITION:absolute;Z-INDEX:' + i + ';VISIBILITY:visible;TOP:15px;LEFT:15px;"><span style="font-size:18px;color:#fff">*</span><\/div>') } } function snowIE_NS6() { doc_width = ns6up ? window.innerWidth - 10 : iecompattest().clientWidth - 10; doc_height = (window.innerHeight && snowdistance == 'windowheight') ? window.innerHeight : (ie4up && snowdistance == 'windowheight') ? iecompattest().clientHeight : (ie4up && !window.opera && snowdistance == 'pageheight') ? iecompattest().scrollHeight : iecompattest().offsetHeight; for (i = 0; i < no; ++i) { yp[i] += sty[i]; if (yp[i] > doc_height - 50) { xp[i] = Math.random() * (doc_width - am[i] - 30); yp[i] = 0; stx[i] = 0.02 + Math.random() / 10; sty[i] = 0.7 + Math.random() } dx[i] += stx[i]; document.getElementById('dot' + i).style.top = yp[i] + 'px'; document.getElementById('dot' + i).style.left = xp[i] + am[i] * Math.sin(dx[i]) + 'px' } snowtimer = setTimeout('snowIE_NS6()', 10) } function hidesnow() { if (window.snowtimer) { clearTimeout(snowtimer) } for (i = 0; i < no; i++)document.getElementById('dot' + i).style.visibility = 'hidden' } if (ie4up || ns6up) { snowIE_NS6(); if (hidesnowtime > 0) setTimeout('hidesnow()', hidesnowtime * 1000) }
 
-                //]]>
+//]]>
  </script>
 
 
@@ -121,11 +129,13 @@
 <br>
 <br>
 <br>
+   
 
-    <audio id="backgroundMusic" autoplay loop allow="autoplay" >
+
+    <!-- <audio id="backgroundMusic" autoplay loop allow="autoplay" >
         <source src="./music/christmassong.mp3" type="audio/mpeg">
         
-    </audio>
+    </audio> -->
     <audio id="spinSound">
         <source src="./music/spinwheelsong.mp3" type="audio/mpeg">
         
@@ -191,9 +201,12 @@
                 <img src="./img/seven.png ">
             </div>
             <div class="card-back">
-                <span>from</span>
-                <span>to</span>
-                <img src="./img/kelvin.png"
+                <span>Merry Christmas</span>
+                <span></span>
+                <span></span>
+                <span></span>
+               
+                <img src="https://images.pexels.com/photos/1303098/pexels-photo-1303098.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                     alt="">
             </div>
         </div>
@@ -206,9 +219,11 @@
                 <img src="./img/kelvin.png" alt="">
             </div>
             <div class="card-back">
-                <span>from</span>
-                <span>to</span>
-                <img src="./img/kelvin.png" alt="">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+                <img src="https://images.pexels.com/photos/1303098/pexels-photo-1303098.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
             </div>
         </div>
     </div>
@@ -220,9 +235,11 @@
                 <img src="./img/minh.png" alt="">
             </div>
             <div class="card-back">
-                <span>from</span>
-                <span>to</span>
-                <img src="./img/kelvin.png" alt="">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <img src="https://images.pexels.com/photos/1303098/pexels-photo-1303098.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
             </div>
         </div>
     </div>
@@ -234,9 +251,11 @@
                 <img src="./img/siri.png" alt="">
             </div>
             <div class="card-back">
-                <span>from</span>
-                <span>to</span>
-                <img src="./img/kelvin.png" alt="">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <img src="https://images.pexels.com/photos/1303098/pexels-photo-1303098.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
             </div>
         </div>
     </div>
@@ -248,9 +267,11 @@
                 <img src="./img/nalie.png" alt="">
             </div>
             <div class="card-back">
-                <span>from</span>
-                <span>to</span>
-                <img src="./img/kelvin.png"
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <img src="https://images.pexels.com/photos/5725882/pexels-photo-5725882.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                     alt="">
             </div>
         </div>
@@ -263,9 +284,11 @@
                 <img src="./img/quyen.png" alt="">
             </div>
             <div class="card-back">
-                <span>from</span>
-                <span>to</span>
-                <img src="./img/kelvin.png" alt="">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <img src="https://images.pexels.com/photos/5725882/pexels-photo-5725882.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
             </div>
         </div>
     </div>
@@ -277,9 +300,11 @@
                 <img src="./img/linh.png" alt="">
             </div>
             <div class="card-back">
-                <span>from</span>
-                <span>to</span>
-                <img src="./img/kelvin.png" alt="">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <img src="https://images.pexels.com/photos/5725882/pexels-photo-5725882.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
             </div>
         </div>
     </div>
@@ -291,9 +316,11 @@
                 <img src="./img/trung.png" alt="">
             </div>
             <div class="card-back">
-                <span>from</span>
-                <span>to</span>
-                <img src="./img/kelvin.png" alt="">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <img src="https://images.pexels.com/photos/5725882/pexels-photo-5725882.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
             </div>
         </div>
     </div>
@@ -305,9 +332,11 @@
                 <img src="./img/aris.png" alt="">
             </div>
             <div class="card-back">
-                <span>from</span>
-                <span>to</span>
-                <img src="./img/kelvin.png"
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <img src="https://images.pexels.com/photos/1303097/pexels-photo-1303097.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                     alt="">
             </div>
         </div>
@@ -321,8 +350,10 @@
                     alt="">
             </div>
             <div class="card-back">
-                <span>from</span>
-                <span>to</span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
                 <img src="https://images.pexels.com/photos/1303097/pexels-photo-1303097.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                     alt="">
             </div>
@@ -335,9 +366,11 @@
                 <img src="./img/tho.png" alt="">
             </div>
             <div class="card-back">
-                <span>from</span>
-                <span>to</span>
-                <img src="https://images.pexels.com/photos/1303098/pexels-photo-1303098.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <img src="https://images.pexels.com/photos/1303097/pexels-photo-1303097.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                     alt="">
             </div>
         </div>
@@ -350,9 +383,11 @@
                 <img src="./img/thanhem.png" alt="">
             </div>
             <div class="card-back">
-                <span>from</span>
-                <span>to</span>
-                <img src="https://images.pexels.com/photos/5725882/pexels-photo-5725882.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <img src="https://images.pexels.com/photos/1303097/pexels-photo-1303097.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                     alt="">
             </div>
         </div>
@@ -365,9 +400,11 @@
                 <img src="./img/toan.png" alt="">
             </div>
             <div class="card-back">
-                <span>from</span>
-                <span>to</span>
-                <img src="https://images.pexels.com/photos/1303098/pexels-photo-1303098.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <img src="https://images.pexels.com/photos/5485112/pexels-photo-5485112.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                     alt="">
             </div>
         </div>
@@ -380,8 +417,10 @@
                 <img src="./img/thoi.png" alt="">
             </div>
             <div class="card-back">
-                <span>from</span>
-                <span>to</span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
                 <img src="https://images.pexels.com/photos/5485112/pexels-photo-5485112.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                     alt="">
             </div>
@@ -394,9 +433,11 @@
                 <img src="./img/khoa.png" alt="">
             </div>
             <div class="card-back">
-                <span>from</span>
-                <span>to</span>
-                <img src="https://images.pexels.com/photos/1303097/pexels-photo-1303097.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <img src="https://images.pexels.com/photos/5485112/pexels-photo-5485112.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                     alt="">
             </div>
         </div>
@@ -409,9 +450,11 @@
                     alt="">
             </div>
             <div class="card-back">
-                <span>from</span>
-                <span>to</span>
-                <img src="https://images.pexels.com/photos/3309621/pexels-photo-3309621.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <img src="https://images.pexels.com/photos/5485112/pexels-photo-5485112.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                     alt="">
             </div>
         </div>
@@ -421,7 +464,8 @@
 
 
 
-<script language="javascript">
+
+<!-- <script language="javascript">
 
     window.onplay = async () => {
         const audio = await document.getElementById('backgroundMusic');
@@ -430,8 +474,9 @@
         }
     };
 
-</script>
+</script> -->
 </body>
+
 </html>
 
 
