@@ -28,14 +28,16 @@ const info = document.querySelector('.info');
 isOpen = false;
 buttonBars.addEventListener('click', function() {
     if(isOpen) {
-    info.style.transform = 'translateX(0)';
-    document.getElementById('iconlist').classList.remove('fa-bars');
+        document.getElementById('iconlist').classList.remove('fa-bars');
      document.getElementById('iconlist').classList.add('fa-arrow-left');
+    info.style.transform = 'translateX(0)';
+    
     }
     else {
-          info.style.transform = 'translateX(-590px)';
-           document.getElementById('iconlist').classList.remove('fa-arrow-left');
+        document.getElementById('iconlist').classList.remove('fa-arrow-left');
      document.getElementById('iconlist').classList.add('fa-bars');
+          info.style.transform = 'translateX(-590px)';
+           
     }   
      isOpen = !isOpen;
 
@@ -220,10 +222,17 @@ function redrawChart() {
                 return data[i].name;
             });
             //   container.on("click", spin);
+              
            function spin(d){
             
             container.on("click", null);
             //all slices have been seen, all done
+            var overlay = document.getElementById('overlay');
+    overlay.style.display = 'block';
+
+    setTimeout(function() {
+        overlay.style.display = 'none';
+    }, 10000);
             console.log("OldPick: " + oldpick.length, "Data length: " + data.length);
            
             var  ps       = 360/data.length,
