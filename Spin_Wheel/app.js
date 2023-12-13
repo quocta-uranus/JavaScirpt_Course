@@ -12,18 +12,35 @@ var backgroundMusic = document.getElementById('backgroundMusic');
 volumeIcon.addEventListener('click', test);
 
 function test() {
-console.log('vao day');
+    console.log('vao day');
     if (backgroundMusic.paused) {
-        
         backgroundMusic.play();
-        volumeIcon.classList.add('playing');
-            } else {
-        // Nếu âm nhạc đang phát, tạm dừng lại
+        document.getElementById('iconvolume').classList.add('fa-volume-up');
+        document.getElementById('iconvolume').classList.remove('fa-volume-off');
+    } else {
         backgroundMusic.pause();
-        // Thay đổi biểu tượng volume (nếu cần)
-        volumeIcon.classList.remove('playing'); // Loại bỏ class "playing" để chỉ trạng thái tạm dừng
+        document.getElementById('iconvolume').classList.remove('fa-volume-up');
+        document.getElementById('iconvolume').classList.add('fa-volume-off');
     }
-};
+}
+var buttonBars = document.getElementById('listIcon');
+const info = document.querySelector('.info');
+isOpen = false;
+buttonBars.addEventListener('click', function() {
+    if(isOpen) {
+    info.style.transform = 'translateX(0)';
+    document.getElementById('iconlist').classList.remove('fa-bars');
+     document.getElementById('iconlist').classList.add('fa-arrow-left');
+    }
+    else {
+          info.style.transform = 'translateX(-590px)';
+           document.getElementById('iconlist').classList.remove('fa-arrow-left');
+     document.getElementById('iconlist').classList.add('fa-bars');
+    }   
+     isOpen = !isOpen;
+
+});
+
 var  reset = document.getElementById('reset');
 reset.addEventListener('click', reSet);
 
@@ -63,8 +80,12 @@ function addName() {
 
        var maxLength = 15;
     if (newName.length > maxLength) {
-        newName = newName.substring(0, maxLength); // Cắt bớt tên nếu vượt quá độ dài cho phép
-    }
+          newName = newName.substring(0, maxLength);
+         // Cắt bớt tên nếu vượt quá độ dài cho phép
+         
+          
+        }
+
    
     if (newName !== '') {
         data.push({
@@ -198,7 +219,7 @@ function redrawChart() {
             .text( function(d, i) {
                 return data[i].name;
             });
-              container.on("click", spin);
+            //   container.on("click", spin);
            function spin(d){
             
             container.on("click", null);
@@ -304,25 +325,38 @@ function showWinnerAnimation(selectedName) {
   
 
     } 
-     
-
-
-var defs = svg.append("defs");
-
-defs.append("pattern")
-    .attr("id", "circleImage")
-    .attr("height", 120) // Điều chỉnh kích thước ảnh
-    .attr("width", 120)
-    .append("image")
-    .attr("href", "./img/seven.png")
-    .attr("height", 120)
-    .attr("width", 120);
 
 var spinCircle = container.append("circle")
     .attr("cx", 0)
     .attr("cy", 0)
     .attr("r", 60)
-    .style("fill", "url(#circleImage)");
+    .style("fill", "white");
+// var svg = d3.select('body').append('svg').attr({
+//   width: 120,
+//   height: 120,
+//   border: '1px solid #ccc'
+// });
+
+// svg.append('svg:image')
+// .attr({
+//   'xlink:href': '',  // can also add svg file here
+//   x: 0,
+//   y: 0,
+//   width: 128,
+//   height: 128
+// });
+// var defs = svg.append("defs");
+
+// defs.append("pattern")
+//     .attr("id", "circleImage")
+//     .attr("height", 120) // Điều chỉnh kích thước ảnh
+//     .attr("width", 120)
+//     .append("image")
+//     .attr("href", "./img/seven.png")
+//     .attr("height", 120)
+//     .attr("width", 120);
+
+
 
 // Vẽ mũi tên bên trong hình tròn
 var arrowPath = "M" + (-30) + ",0L0," + (-15) + "L0," + (15) + "Z"; // Đường dẫn của mũi tên, điều chỉnh để thay đổi hình dạng
@@ -342,7 +376,7 @@ var arrow = container.append("path")
 //         "font-size": "36px",
 //         "fill": "red" // Màu sắc của chữ là xanh
 //     });
-
+container.select("circle").on("click", spin);
 let spinTextVisible = true;
  let spinCircleVisible = true;
  let arrowVisible = true;
