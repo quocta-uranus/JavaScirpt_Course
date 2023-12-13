@@ -25,15 +25,17 @@ function test() {
 }
 var buttonBars = document.getElementById('listIcon');
 const info = document.querySelector('.info');
-isOpen = false;
-buttonBars.addEventListener('click', function() {
+        isOpen = true;
+buttonBars.addEventListener('click', function() {                 
     if(isOpen) {
+         console.log('ra');
         document.getElementById('iconlist').classList.remove('fa-bars');
-     document.getElementById('iconlist').classList.add('fa-arrow-left');
-    info.style.transform = 'translateX(0)';
+        document.getElementById('iconlist').classList.add('fa-arrow-left');
+        info.style.transform = 'translateX(0)';
     
     }
     else {
+         console.log('vao');
         document.getElementById('iconlist').classList.remove('fa-arrow-left');
      document.getElementById('iconlist').classList.add('fa-bars');
           info.style.transform = 'translateX(-590px)';
