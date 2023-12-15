@@ -149,7 +149,7 @@ label {
         
         border-radius: 4px;
         padding: 5px ;
-        margin-left: 5px;
+        margin-left: 25px;
         font-size: 12px;
         line-height: 13px;
         text-decoration: none;
@@ -216,7 +216,7 @@ display: inline-block;
     padding-top: 8px;
     margin-top: 140px;
     transition: transform 1s ease-out; 
-     transform: translateX(-590px);
+     transform: translateX(-750px);
 }
 .info:hover  {
 
@@ -241,6 +241,23 @@ display: inline-block;
     overflow-y: auto;
   
 }  
+.name-container-wrapper::-webkit-scrollbar {
+    width: 8px; 
+}
+
+.name-container-wrapper::-webkit-scrollbar-thumb {
+    background: #c55857;
+
+    box-shadow:
+        inset 1px 1px 0px rgba(255, 255, 255, 0.25),
+        inset 0 0 6px #f8f8f8,
+        inset 0 80px 80px -40px #d80104,
+        1px 1px 3px rgba(0, 0, 0, 0.75);
+}
+
+.name-container-wrapper::-webkit-scrollbar-track {
+    background-color: #f4f4f4; 
+}
 .name-container .delete-button {
     background-color: #f44336;
     color: white;
@@ -279,7 +296,7 @@ display: inline-block;
     width: 35px;
 }
 .btn-reset {
-    top: 64px;
+    top: 62px;
 }
 .button {
     display: inline-block;
@@ -1111,6 +1128,7 @@ main .card-back img {
     inset: 0;
 }
 
+
 main .card-front,
 main .card-back {
     -webkit-backface-visibility: hidden;
@@ -1124,4 +1142,6 @@ main .card-back {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
+} 
+
+
