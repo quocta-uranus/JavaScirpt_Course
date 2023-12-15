@@ -1128,7 +1128,6 @@ main .card-back img {
     inset: 0;
 }
 
-
 main .card-front,
 main .card-back {
     -webkit-backface-visibility: hidden;
