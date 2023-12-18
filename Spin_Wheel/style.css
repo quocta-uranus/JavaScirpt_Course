@@ -9,10 +9,7 @@ html {
 }
 body {
   position: relative;
-    background-color: #00f7a5;
    overflow-x: hidden;
-    
-    
 }
 #chart {
     position: absolute;
@@ -150,6 +147,7 @@ label {
         border-radius: 4px;
         padding: 5px ;
         margin-left: 25px;
+        margin-bottom: 5px;
         font-size: 12px;
         line-height: 13px;
         text-decoration: none;
@@ -209,6 +207,7 @@ display: inline-block;
 .name-container span {
     font-size: 18px;
     font-weight: bold;
+    margin-left: 4px;
     transition: transform 0.3s ease-out;
 }
 .info{
@@ -261,7 +260,7 @@ display: inline-block;
 .name-container .delete-button {
     background-color: #f44336;
     color: white;
-    padding: 5px 10px;
+    padding: 6px 12px;
     border: none;
     cursor: pointer;
     border-radius: 3px;
@@ -1104,16 +1103,15 @@ main .card-back {
 
 main .card-back span {
     font-family: "Sofia", cursive;
-    font-size: 1.2rem;
+    font-size: 1rem;
     display: block;
     position: relative;
     z-index: 3;
-    margin-block: 10px;
+    margin-block: 2px;
 }
 
 main .card-back span::after {
     display: block;
-    border-bottom: 2px dashed black;
     position: absolute;
     content: "";
     bottom: -7px;

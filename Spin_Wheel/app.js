@@ -7,6 +7,8 @@ input.addEventListener("keypress", handleKeyPress);
 var volumeIcon = document.getElementById("volumeIcon");
 var backgroundMusic = document.getElementById("backgroundMusic");
 
+var clickSound = document.getElementById("clickSound");
+
 // Thêm sự kiện click cho icon volume
 volumeIcon.addEventListener("click", test);
 
@@ -26,6 +28,7 @@ var buttonBars = document.getElementById("listIcon");
 const info = document.querySelector(".info");
 isOpen = true;
 buttonBars.addEventListener("click", function () {
+  clickSound.play();
   if (isOpen) {
     console.log("ra");
     document.getElementById("iconlist").classList.remove("fa-bars");
@@ -43,7 +46,9 @@ buttonBars.addEventListener("click", function () {
 var reset = document.getElementById("reset");
 reset.addEventListener("click", reSet);
 
+
 function reSet() {
+  clickSound.play();
   data = [];
 
   redrawChart();
@@ -70,6 +75,7 @@ function reSet() {
 }
 
 function addName() {
+  clickSound.play();
   var allNames = input.value.split("\n");
   var newName = allNames[allNames.length - 1].trim();
 
@@ -111,6 +117,7 @@ function addName() {
     console.log(nameContainer);
 
     deleteButton.addEventListener("click", function () {
+      clickSound.play();
       var containerToRemove = document.getElementById(containerIdDynamic);
 
       // Xử lý xóa name-container nếu tồn tại
