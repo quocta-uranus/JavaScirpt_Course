@@ -9,7 +9,7 @@ var backgroundMusic = document.getElementById("backgroundMusic");
 
 var clickSound = document.getElementById("clickSound");
 
-// Thêm sự kiện click cho icon volume
+
 volumeIcon.addEventListener("click", test);
 
 function test() {
@@ -243,9 +243,9 @@ function redrawChart() {
     var overlay = document.getElementById("overlay");
     overlay.style.display = "block";
 
-    setTimeout(function () {
-      overlay.style.display = "none";
-    }, 10000);
+    // setTimeout(function () {
+    //   overlay.style.display = "none";
+    // }, 10000);
     console.log("OldPick: " + oldpick.length, "Data length: " + data.length);
 
     var ps = 360 / data.length,
@@ -281,13 +281,13 @@ function redrawChart() {
           var valueFromId = parts1[parts1.length - 1];
 
           if (parseInt(valueFromId) === selectedValue) {
-            container.remove(); // Xóa phần tử chứa tên được chọn
+            // container.remove(); // Xóa phần tử chứa tên được chọn
           }
         });
 
         if (indexToRemove !== -1) {
-          data.splice(indexToRemove, 1);
-          redrawChart(); // Cập nhật lại hình tròn sau khi xóa tên đã chọn
+          // data.splice(indexToRemove, 1);
+          // redrawChart(); // Cập nhật lại hình tròn sau khi xóa tên đã chọn
 
           // Kiểm tra nếu không còn tên nào trong vòng quay
           if (data.length === 0 && spinCircleVisible) {
@@ -318,26 +318,94 @@ function redrawChart() {
     spinSound.play();
 
     function showWinnerAnimation(selectedName) {
+  
       var winnerElement = document.getElementById("winnerMessage");
       var winnerNameElement = document.querySelector(".winnerName");
       var canvas = document.getElementById("canvas");
+      var OkButton = document.getElementById("okButton");
+      var cancelButton = document.getElementById("cancelButton");
+    
       winnerNameElement.textContent = selectedName;
-
-      // Kích hoạt animation CSS
       winnerElement.style.display = "block";
-      setTimeout(function () {
-        winnerElement.classList.remove("hidden");
+      winnerElement.classList.remove("hidden");
+    
+      var shouldDeleteName = false; // Cờ để xác định liệu có xóa tên hay không
+    
+      OkButton.addEventListener("click", function () {
+        console.log("OK button clicked");
         Congrat();
         canvas.style.display = "block";
+         
+          var selectedValue = data[picked].value;
+          var indexToRemove = data.findIndex(function (item) {
+            return item.value === selectedValue;
+          });
+          if (indexToRemove !== -1) {
+            data.splice(indexToRemove, 1);
+            redrawChart(); // Cập nhật biểu đồ sau khi xóa
+            if (data.length === 0 && spinCircleVisible) {
+              var spinCircle = document.querySelector(".chartholder circle");
+              var arrow = document.querySelector(".chartholder path");
+              var spinText = document.querySelector(".chartholder text");
+              if (spinCircle) {
+                spinCircle.style.display = "none";
+  
+                spinCircleVisible = false; 
+              }
+              if (arrow) {
+                arrow.style.display = "none";
+                arrowVisible = false; //
+              }
+              if (spinText) {
+                spinText.style.display = "none";
+                spinTextVisible = false;
+              }
+            }
+          }
+          var nameContainers = document.querySelectorAll(".name-container");
+        nameContainers.forEach(function (container) {
+          var containerId = container.id;
+          var parts1 = containerId.split("-");
+          var valueFromId = parts1[parts1.length - 1];
+
+          if (parseInt(valueFromId) === selectedValue) {
+            container.remove(); // Xóa phần tử chứa tên được chọn
+          }
+        });
+        setTimeout(function () {
+          canvas.style.display = "none";
+        },5000)
+        // 
+        overlay.style.display = "none";
         var clapHand = document.getElementById("clapHand");
         clapHand.play();
-        // Tạo một hàm setTimeout() bao bọc Congrat() để tự động tắt sau 5 giây
-        setTimeout(function () {
-          var winnerElement = document.getElementById("winnerMessage");
-          winnerElement.style.display = "none";
-          canvas.style.display = "none";
-        }, 5000);
-      }, 100);
+        winnerElement.style.display = "none";
+        // canvas.style.display = "none";
+      });
+    
+      cancelButton.addEventListener("click", function () {
+        
+        shouldDeleteName = false;
+        overlay.style.display = "none";
+        
+        winnerElement.style.display = "none";
+        canvas.style.display = "none";
+      });
+      // Kích hoạt animation CSS
+      
+      // setTimeout(function () {
+      //   winnerElement.classList.remove("hidden");
+      //   Congrat();
+      //   canvas.style.display = "block";
+      //   var clapHand = document.getElementById("clapHand");
+      //   clapHand.play();
+      //   // Tạo một hàm setTimeout() bao bọc Congrat() để tự động tắt sau 5 giây
+      //   setTimeout(function () {
+      //     var winnerElement = document.getElementById("winnerMessage");
+      //     winnerElement.style.display = "none";
+      //     canvas.style.display = "none";
+      //   }, 5000);
+      // }, 100);
     }
   }
 
