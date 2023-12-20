@@ -15,8 +15,6 @@ body {
     position: absolute;
    margin-left: 40%;
 
-   
-   
 }
 .img {
     position: absolute;
@@ -217,7 +215,7 @@ display: inline-block;
     padding-top: 8px;
     margin-top: 140px;
     transition: transform 1s ease-out; 
-    transform: translateX(-750px);
+    transform: translateX(-800px);
 }
 .info:hover  {
 
@@ -272,7 +270,6 @@ display: inline-block;
 }
 .slice text {
     font-size: 20px;
-   
     fill: rgb(242, 242, 243);
     /* Màu sắc của văn bản */
     font-weight: bolder;
@@ -1127,7 +1124,14 @@ main .card-back span {
     z-index: 3;
     margin-block: 2px;
 }
-
+main .card-back .nalie-span {
+    font-family: "Sofia", cursive;
+    font-size: 0.85rem;
+    display: block;
+    position: relative;
+    z-index: 3;
+    margin-block: -5px;
+}
 main .card-back span::after {
     display: block;
     position: absolute;
