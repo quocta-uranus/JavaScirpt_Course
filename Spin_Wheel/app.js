@@ -9,7 +9,6 @@ var backgroundMusic = document.getElementById("backgroundMusic");
 
 var clickSound = document.getElementById("clickSound");
 
-
 volumeIcon.addEventListener("click", test);
 
 function test() {
@@ -38,14 +37,13 @@ buttonBars.addEventListener("click", function () {
     console.log("vao");
     document.getElementById("iconlist").classList.remove("fa-arrow-left");
     document.getElementById("iconlist").classList.add("fa-bars");
-    info.style.transform = "translateX(-750px)";
+    info.style.transform = "translateX(-800px)";
   }
   isOpen = !isOpen;
 });
 
 var reset = document.getElementById("reset");
 reset.addEventListener("click", reSet);
-
 
 function reSet() {
   clickSound.play();
@@ -117,6 +115,7 @@ function addName() {
     console.log(nameContainer);
 
     deleteButton.addEventListener("click", function () {
+
       clickSound.play();
       var containerToRemove = document.getElementById(containerIdDynamic);
 
@@ -135,6 +134,24 @@ function addName() {
 
         // Xóa name-container cụ thể
         containerToRemove.remove();
+        if (data.length === 0) {
+          var spinCircle = document.querySelector(".chartholder circle");
+          var arrow = document.querySelector(".chartholder path");
+          var spinText = document.querySelector(".chartholder text");
+          if (spinCircle) {
+            spinCircle.style.display = "none";
+      
+            spinCircleVisible = false; // Đặt biến spinCircleVisible thành false
+          }
+          if (arrow) {
+            arrow.style.display = "none";
+            arrowVisible = false; //
+          }
+          if (spinText) {
+            spinText.style.display = "none";
+            spinTextVisible = false;
+          }
+        }
       }
     });
     // Tạo div name-container
@@ -191,7 +208,6 @@ function redrawChart() {
       "translate(" + (w / 2 + padding.left) + "," + (h / 2 + padding.top) + ")"
     );
   var vis = container.append("g");
-
   var pie = d3.layout
     .pie()
     .sort(null)
@@ -207,7 +223,6 @@ function redrawChart() {
     .enter()
     .append("g")
     .attr("class", "slice");
-
   arcs
     .append("path")
     .attr("fill", function (d, i) {
@@ -236,7 +251,6 @@ function redrawChart() {
       return data[i].name;
     });
   //   container.on("click", spin);
-
   function spin(d) {
     container.on("click", null);
     //all slices have been seen, all done
@@ -260,11 +274,13 @@ function redrawChart() {
       oldpick.push(picked);
     }
     rotation += 90 - Math.round(ps / 2);
+
     vis
       .transition()
       .duration(5000)
       .attrTween("transform", rotTween)
       .each("end", function () {
+        console.log("yo yo");
         var selectedValue = data[picked].value;
         var selectedName = data[picked].name;
         console.log(selectedValue);
@@ -273,22 +289,19 @@ function redrawChart() {
           return item.value === selectedValue;
         });
         console.log(indexToRemove);
+        // var nameContainers = document.querySelectorAll(".name-container");
+        // nameContainers.forEach(function (container) {
+        //   var containerId = container.id;
+        //   var parts1 = containerId.split("-");
+        //   var valueFromId = parts1[parts1.length - 1];
 
-        var nameContainers = document.querySelectorAll(".name-container");
-        nameContainers.forEach(function (container) {
-          var containerId = container.id;
-          var parts1 = containerId.split("-");
-          var valueFromId = parts1[parts1.length - 1];
-
-          if (parseInt(valueFromId) === selectedValue) {
-            // container.remove(); // Xóa phần tử chứa tên được chọn
-          }
-        });
-
+        //   if (parseInt(valueFromId) === selectedValue) {
+        //     // container.remove(); // Xóa phần tử chứa tên được chọn
+        //   }
+        // });
         if (indexToRemove !== -1) {
           // data.splice(indexToRemove, 1);
           // redrawChart(); // Cập nhật lại hình tròn sau khi xóa tên đã chọn
-
           // Kiểm tra nếu không còn tên nào trong vòng quay
           if (data.length === 0 && spinCircleVisible) {
             var spinCircle = document.querySelector(".chartholder circle");
@@ -296,7 +309,6 @@ function redrawChart() {
             var spinText = document.querySelector(".chartholder text");
             if (spinCircle) {
               spinCircle.style.display = "none";
-
               spinCircleVisible = false; // Đặt biến spinCircleVisible thành false
             }
             if (arrow) {
@@ -309,104 +321,12 @@ function redrawChart() {
             }
           }
         }
-
         oldrotation = rotation;
         showWinnerAnimation(selectedName);
       });
 
     var spinSound = document.getElementById("spinSound");
     spinSound.play();
-
-    function showWinnerAnimation(selectedName) {
-  
-      var winnerElement = document.getElementById("winnerMessage");
-      var winnerNameElement = document.querySelector(".winnerName");
-      var canvas = document.getElementById("canvas");
-      var OkButton = document.getElementById("okButton");
-      var cancelButton = document.getElementById("cancelButton");
-    
-      winnerNameElement.textContent = selectedName;
-      winnerElement.style.display = "block";
-      winnerElement.classList.remove("hidden");
-    
-      var shouldDeleteName = false; // Cờ để xác định liệu có xóa tên hay không
-    
-      OkButton.addEventListener("click", function () {
-        console.log("OK button clicked");
-        Congrat();
-        canvas.style.display = "block";
-         
-          var selectedValue = data[picked].value;
-          var indexToRemove = data.findIndex(function (item) {
-            return item.value === selectedValue;
-          });
-          if (indexToRemove !== -1) {
-            data.splice(indexToRemove, 1);
-            redrawChart(); // Cập nhật biểu đồ sau khi xóa
-            if (data.length === 0 && spinCircleVisible) {
-              var spinCircle = document.querySelector(".chartholder circle");
-              var arrow = document.querySelector(".chartholder path");
-              var spinText = document.querySelector(".chartholder text");
-              if (spinCircle) {
-                spinCircle.style.display = "none";
-  
-                spinCircleVisible = false; 
-              }
-              if (arrow) {
-                arrow.style.display = "none";
-                arrowVisible = false; //
-              }
-              if (spinText) {
-                spinText.style.display = "none";
-                spinTextVisible = false;
-              }
-            }
-          }
-          var nameContainers = document.querySelectorAll(".name-container");
-        nameContainers.forEach(function (container) {
-          var containerId = container.id;
-          var parts1 = containerId.split("-");
-          var valueFromId = parts1[parts1.length - 1];
-
-          if (parseInt(valueFromId) === selectedValue) {
-            container.remove(); // Xóa phần tử chứa tên được chọn
-          }
-        });
-        setTimeout(function () {
-          canvas.style.display = "none";
-        },5000)
-        // 
-        overlay.style.display = "none";
-        var clapHand = document.getElementById("clapHand");
-        clapHand.play();
-        winnerElement.style.display = "none";
-        // canvas.style.display = "none";
-      });
-    
-      cancelButton.addEventListener("click", function () {
-        
-        shouldDeleteName = false;
-        overlay.style.display = "none";
-        
-        winnerElement.style.display = "none";
-        canvas.style.display = "none";
-      });
-      // Kích hoạt animation CSS
-      
-      // setTimeout(function () {
-      //   winnerElement.classList.remove("hidden");
-      //   Congrat();
-      //   canvas.style.display = "block";
-      //   var clapHand = document.getElementById("clapHand");
-      //   clapHand.play();
-      //   // Tạo một hàm setTimeout() bao bọc Congrat() để tự động tắt sau 5 giây
-      //   setTimeout(function () {
-      //     var winnerElement = document.getElementById("winnerMessage");
-      //     winnerElement.style.display = "none";
-      //     canvas.style.display = "none";
-      //   }, 5000);
-      // }, 100);
-    }
   }
 
   var spinCircle = container
@@ -447,7 +367,6 @@ function redrawChart() {
     .attr("d", arrowPath)
     .attr("transform", "translate(60,0) rotate(-180)") // Di chuyển và quay mũi tên về phía bên phải
     .style({ fill: "red" });
-
   // var spinText = container.append("text")
   //     .attr("x", 0)
   //     .attr("y", 15)
@@ -485,6 +404,139 @@ function redrawChart() {
   //     .attr("text-anchor", "middle")
   //     .text("SPIN")
   //     .style({"font-weight":"bold", "font-size":"30px"});
+}
+
+// OkButton.addEventListener("click", okFunction);
+// cancelButton.addEventListener("click", cancelFunction);
+
+// function okFunction () {
+//   console.log("OK button");
+// }
+// function cancelFunction () {
+//   console.log("cancel button");
+// }
+
+// var winnerElement = document.getElementById("winnerMessage");
+//   var winnerNameElement = document.querySelector(".winnerName");
+//   var canvas = document.getElementById("canvas");
+//   var OkButton = document.getElementById("okButton");
+//   var cancelButton = document.getElementById("cancelButton");
+
+// OkButton.addEventListener("click", okFunction);
+// cancelButton.addEventListener("click", cancelFunction);
+// // function okFunction () {
+// //   console.log("OK button");
+// // }
+// function cancelFunction () {
+//   console.log("cancel button");
+// }
+
+
+function okFunction() {
+  const winnerElement = document.getElementById("winnerMessage");
+  const winnerNameElement = document.querySelector(".winnerName");
+  const  canvas = document.getElementById("canvas");
+  
+
+  console.log("OK button");
+  Congrat();
+  canvas.style.display = "block";
+  var selectedValue = data[picked].value;
+  console.log(selectedValue);
+  var indexToRemove = data.findIndex(function (item) {
+    return item.value === selectedValue;
+  });
+  console.log(indexToRemove);
+
+  var nameContainers = document.querySelectorAll(".name-container");
+  nameContainers.forEach(function (container) {
+    var containerId = container.id;
+    var parts1 = containerId.split("-");
+    var valueFromId = parts1[parts1.length - 1];
+
+    if (parseInt(valueFromId) === selectedValue) {
+      container.remove();
+    }
+  });
+  if (indexToRemove !== -1) {
+    data.splice(indexToRemove, 1);
+    redrawChart();
+
+    if (data.length === 0 && spinCircleVisible) {
+      var spinCircle = document.querySelector(".chartholder circle");
+      var arrow = document.querySelector(".chartholder path");
+      var spinText = document.querySelector(".chartholder text");
+      if (spinCircle) {
+        spinCircle.style.display = "none";
+
+        spinCircleVisible = false;
+      }
+      if (arrow) {
+        arrow.style.display = "none";
+        arrowVisible = false; //
+      }
+      if (spinText) {
+        spinText.style.display = "none";
+        spinTextVisible = false;
+      }
+    }
+  }
+
+  setTimeout(function () {
+    canvas.style.display = "none";
+  }, 5000);
+
+  overlay.style.display = "none";
+  var clapHand = document.getElementById("clapHand");
+  clapHand.play();
+  winnerElement.style.display = "none";
+
+  // OkButton.on("click", null);
+  // canvas.style.display = "none";
+  // OkButton.on("click", null );
+}
+function cancelFunction () {
+  const winnerElement = document.getElementById("winnerMessage");
+
+  const  canvas = document.getElementById("canvas");
+  
+
+  console.log("cancel button");
+  shouldDeleteName = false;
+  overlay.style.display = "none";
+
+  winnerElement.style.display = "none";
+  canvas.style.display = "none";
+}
+function showWinnerAnimation(selectedName) {
+  const winnerElement = document.getElementById("winnerMessage");
+  const winnerNameElement = document.querySelector(".winnerName");
+  const  canvas = document.getElementById("canvas");
+  const  OkButton = document.getElementById("okButton");
+  const  cancelButton = document.getElementById("cancelButton");
+
+  winnerNameElement.textContent = selectedName;
+  winnerElement.style.display = "block";
+  // winnerElement.classList.remove("hidden");
+
+  OkButton.addEventListener("click", okFunction);
+
+  cancelButton.addEventListener("click",cancelFunction );
+  // Kích hoạt animation CSS
+
+  // setTimeout(function () {
+  //   winnerElement.classList.remove("hidden");
+  //   Congrat();
+  //   canvas.style.display = "block";
+  //   var clapHand = document.getElementById("clapHand");
+  //   clapHand.play();
+  //   // Tạo một hàm setTimeout() bao bọc Congrat() để tự động tắt sau 5 giây
+  //   setTimeout(function () {
+  //     var winnerElement = document.getElementById("winnerMessage");
+  //     winnerElement.style.display = "none";
+  //     canvas.style.display = "none";
+  //   }, 5000);
+  // }, 100);
 }
 
 var padding = { top: 20, right: 40, bottom: 0, left: 0 },
