@@ -1119,15 +1119,23 @@ main .card-back {
 main .card-back span {
     font-family: "Sofia", cursive;
     font-size: 1rem;
+    
     display: block;
     position: relative;
     z-index: 3;
-    margin-block: 2px;
+    margin-block: -2px;
 }
 main .card-back .nalie-span {
     font-family: "Sofia", cursive;
-    font-size: 0.85rem;
+    font-size: 0.87rem;
     display: block;
+    position: relative;
+    z-index: 3;
+    margin-block: -5px;
+}
+main .card-back .thoi-span  {
+    font-family: "Sofia", cursive;
+    font-size: 0.85rem;
     position: relative;
     z-index: 3;
     margin-block: -5px;
