@@ -484,9 +484,10 @@ function okFunction() {
 
   setTimeout(function () {
     canvas.style.display = "none";
-  }, 5000);
+    overlay.style.display = "none";
+  }, 4000);
 
-  overlay.style.display = "none";
+ 
   var clapHand = document.getElementById("clapHand");
   clapHand.play();
   winnerElement.style.display = "none";
