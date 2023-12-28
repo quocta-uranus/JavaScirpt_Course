@@ -208,7 +208,7 @@ window.addEventListener("resize", function() {
 
 ```
 
-Sử dụng **event istener** khi muốn một sự kiện diễn ra nhưng sau đó lai muốn hủy bỏ lắng nghe sự kiện đó trong một trường hợp cụ thể nào đó
+Sử dụng **EventListener** khi muốn một sự kiện diễn ra nhưng sau đó lai muốn hủy bỏ lắng nghe sự kiện đó trong một trường hợp cụ thể nào đó
 Khi có nhiều event listener ta có thể loại bỏ 1 sự kiện cụ thể nào đó
 
 ## **JSON**
@@ -237,7 +237,7 @@ Khi có nhiều event listener ta có thể loại bỏ 1 sự kiện cụ thể
 
 ## **ECMAScript 6+**
 
-- Var / Let, Const: Scope, Hosting
+- Var / Let, Const: Scope, Hoisting
 - Const là hằng số giá trị k đổi / Var, Let: Assignment
 - Code thuần : var
 - Babel: Const, Let
